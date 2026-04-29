@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import faheemPhoto from "../assets/faheem.jpg";
-import MorphText from "./MorphText";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -10,54 +9,45 @@ export default function Hero() {
   const sectionRef = useRef(null);
   const leftDivRef = useRef(null);
   const rightDivRef = useRef(null);
-  const ghostRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // GHOST TEXT — fade in on load, stays visible
-      gsap.fromTo(
-        ghostRef.current,
-        { opacity: 0 },
-        {
-          opacity: 1,
-          duration: 1.5,
-          ease: "power2.out",
-        },
-      );
-
-      // ENTRANCE: Come in from beneath
+      // 1. ENTRANCE ANIMATION
+      // Starts 100px lower (y: 100) and moves to its natural CSS position (y: 0)
       gsap.fromTo(
         [leftDivRef.current, rightDivRef.current],
-        { y: 150, opacity: 0 },
+        { y: 100, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 1,
+          duration: 1.2,
           stagger: 0.15,
           ease: "power4.out",
-          onComplete: () => {
-            gsap.to(leftDivRef.current, {
-              y: -200,
-              scrollTrigger: {
-                trigger: sectionRef.current,
-                start: "top top",
-                end: "+=180%",
-                scrub: true,
-              },
-            });
-
-            gsap.to(rightDivRef.current, {
-              y: -280,
-              scrollTrigger: {
-                trigger: sectionRef.current,
-                start: "top top",
-                end: "+=180%",
-                scrub: true,
-              },
-            });
-          },
+          delay: 0.2,
         },
       );
+
+      // 2. PARALLAX SCROLL (Fast upward movement)
+      // We animate from y: 0 (the position they just landed in) to a negative Y value
+      gsap.to(leftDivRef.current, {
+        y: -400,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+
+      gsap.to(rightDivRef.current, {
+        y: -500,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -70,10 +60,7 @@ export default function Hero() {
       className="relative min-h-screen flex items-center overflow-hidden"
     >
       {/* Ghost background text */}
-      <div
-        ref={ghostRef}
-        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden"
-      >
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
         <span
           className="font-display font-black whitespace-nowrap bg-gradient-to-b from-gray-400 to-black bg-clip-text text-transparent"
           style={{
@@ -118,7 +105,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Floating pills */}
+      {/* Floating pills — Restored exact styles */}
       <div className="absolute top-[35%] left-[32%] z-20 animate-float">
         <div
           className="px-24 py-8 rounded-full bg-white border border-black/5 text-black text-base font-bold font-display tracking-widest shadow-2xl"
@@ -177,11 +164,7 @@ export default function Hero() {
           <br />
           <span className="text-golden text-[0.95em]">FRONT END</span>
           <br />
-          <MorphText
-            original="& PRETTY THINGS."
-            replacement="& KAWAII THINGS."
-            radius={120}
-          />
+          <span className="text-[0.9em]">& PRETTY THINGS.</span>
         </h1>
       </div>
 
@@ -191,14 +174,10 @@ export default function Hero() {
           A bit about me
         </p>
         <h2
-          className="font-display font-black leading-[1.1] text-cream text-right md:text-left"
+          className="font-display font-black leading-[1.1] text-cream"
           style={{ fontSize: "clamp(18px, 2.5vw, 36px)" }}
         >
-          <MorphText
-            original="SOFTWARE ENGINEER"
-            replacement="BEROZEGAAR-"
-            radius={200}
-          />
+          SOFTWARE ENGINEER
           <br />
           <span className="text-golden text-[0.95em]">& CREATIVE</span>
           <br />

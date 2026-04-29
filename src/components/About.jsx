@@ -1,86 +1,239 @@
 import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
   const sectionRef = useRef(null);
+  const ghostRef = useRef(null);
+  const taglineRef = useRef(null);
+  const headingRef = useRef(null);
+  const bioRef = useRef(null);
+  const ctaRef = useRef(null);
+  const statsRef = useRef(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((e) => {
-          if (e.isIntersecting) e.target.classList.add("visible");
-        }),
-      { threshold: 0.15 },
-    );
-    sectionRef.current
-      ?.querySelectorAll(".reveal")
-      .forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ghostRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: 1.5, ease: "power2.out" },
+      );
+
+      gsap.fromTo(
+        taglineRef.current,
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 65%",
+            once: true,
+          },
+        },
+      );
+
+      const chars = headingRef.current?.querySelectorAll(".char");
+      if (chars?.length) {
+        gsap.fromTo(
+          chars,
+          { yPercent: 120, opacity: 0 },
+          {
+            yPercent: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power4.out",
+            stagger: 0.025,
+            scrollTrigger: {
+              trigger: headingRef.current,
+              start: "top 60%",
+              once: true,
+            },
+          },
+        );
+      }
+
+      gsap.fromTo(
+        [bioRef.current, ctaRef.current],
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.9,
+          ease: "power3.out",
+          stagger: 0.15,
+          scrollTrigger: {
+            trigger: bioRef.current,
+            start: "top 75%",
+            once: true,
+          },
+        },
+      );
+
+      const cards = statsRef.current?.querySelectorAll(".stat-card");
+      if (cards?.length) {
+        gsap.fromTo(
+          cards,
+          { y: 80, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+            stagger: 0.13,
+            scrollTrigger: {
+              trigger: statsRef.current,
+              start: "top 85%",
+              once: true,
+            },
+          },
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
     <section
       id="about"
       ref={sectionRef}
-      className="relative py-32 px-10 overflow-hidden"
+      className="relative w-full flex flex-col items-center"
+      style={{ paddingTop: "12rem", paddingBottom: "12rem" }}
     >
-      {/* Ghost text */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+      {/* TOP CONTENT */}
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-10 flex flex-col items-center text-center">
+        <p
+          ref={taglineRef}
+          className="text-golden text-xs tracking-[0.4em] uppercase font-display mb-12 opacity-0"
+        >
+          Hi 👋 — Who I Am
+        </p>
+
+        <div
+          ref={headingRef}
+          className="font-display font-black text-cream mb-16 w-full"
+          style={{ fontSize: "clamp(40px, 6vw, 88px)", lineHeight: 1.15 }}
+        >
+          <div className="overflow-hidden mb-4">
+            {"I LIKE THINGS".split("").map((c, i) => (
+              <span
+                key={i}
+                className="char inline-block opacity-0"
+                style={{ whiteSpace: c === " " ? "pre" : "normal" }}
+              >
+                {c}
+              </span>
+            ))}
+          </div>
+          <div className="overflow-hidden">
+            {"THAT LOOK ".split("").map((c, i) => (
+              <span
+                key={i}
+                className="char inline-block opacity-0 text-golden"
+                style={{ whiteSpace: c === " " ? "pre" : "normal" }}
+              >
+                {c}
+              </span>
+            ))}
+            {"PRETTY.".split("").map((c, i) => (
+              <span
+                key={i}
+                className="char inline-block opacity-0"
+                style={{ whiteSpace: c === " " ? "pre" : "normal" }}
+              >
+                {c}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <p
+          ref={bioRef}
+          className="text-cream/50 text-lg leading-[2.2] font-sans opacity-0 max-w-2xl mb-12"
+        >
+          Currently studying Software Engineering at NUST. I build web
+          experiences that make people stop and stare — obsessing over the curve
+          of a button, the weight of a font, the timing of an animation.
+        </p>
+
+        <a
+          ref={ctaRef}
+          href="#contact"
+          className="opacity-0 inline-flex items-center gap-3 px-8 py-4 rounded-full bg-golden text-charcoal text-sm font-display font-bold tracking-widest uppercase hover:bg-caramel transition-all duration-300"
+        >
+          Let's Talk <span>→</span>
+        </a>
+      </div>
+
+      {/* GHOST TEXT — inline between top and stats, not absolute */}
+      <div
+        ref={ghostRef}
+        className="relative w-full flex items-center justify-center pointer-events-none select-none overflow-hidden"
+        style={{
+          height: "28rem",
+          marginTop: "-4rem",
+          marginBottom: "-4rem",
+          opacity: 0,
+        }}
+      >
         <span
-          className="text-outline font-display font-black"
-          style={{ fontSize: "clamp(80px, 16vw, 200px)" }}
+          className="font-display font-black whitespace-nowrap bg-gradient-to-b from-gray-400 to-black bg-clip-text text-transparent"
+          style={{
+            fontSize: "clamp(85px, 18vw, 220px)",
+            letterSpacing: "-0.02em",
+          }}
         >
           ABOUT
         </span>
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto grid md:grid-cols-2 gap-20 items-center">
-        {/* Left — bio */}
-        <div className="reveal">
-          <p className="text-golden text-xs tracking-[0.3em] uppercase font-display mb-6">
-            Who I Am
-          </p>
-          <p className="text-cream/80 text-xl leading-relaxed font-sans mb-6">
-            I like things that look pretty.
-          </p>
-          <p className="text-cream/50 text-base leading-relaxed font-sans mb-8">
-            Currently studying Software Engineering at NUST, I build web
-            experiences that make people stop and stare. I obsess over details —
-            the curve of a button, the weight of a font, the timing of an
-            animation.
-          </p>
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-golden text-charcoal text-sm font-display font-bold tracking-widest uppercase hover:bg-caramel transition-all duration-300"
+      {/* STATS GRID */}
+      <div
+        ref={statsRef}
+        className="relative z-10 w-full max-w-5xl mx-auto px-10 grid grid-cols-2 gap-6"
+      >
+        {[
+          {
+            num: "10+",
+            label: "Prized Projects",
+            sub: "Real work. Real craft.",
+          },
+          {
+            num: "7+",
+            label: "Technologies",
+            sub: "React, Three.js, GSAP & more",
+          },
+          {
+            num: "∞",
+            label: "Late Nights",
+            sub: "The best work happens after midnight",
+          },
+          { num: "1", label: "Goal", sub: "Ship beauty into the world" },
+        ].map(({ num, label, sub }) => (
+          <div
+            key={label}
+            className="stat-card opacity-0 p-12 rounded-3xl transition-all duration-500 group text-left"
+            style={{ background: "rgba(245, 240, 232, 0.04)" }}
           >
-            Let's Talk
-            <span>→</span>
-          </a>
-        </div>
-
-        {/* Right — stats */}
-        <div
-          className="grid grid-cols-2 gap-4 reveal"
-          style={{ transitionDelay: "0.2s" }}
-        >
-          {[
-            { num: "2+", label: "Prized Projects" },
-            { num: "5+", label: "Technologies" },
-            { num: "∞", label: "Late Nights" },
-            { num: "1", label: "Goal: Ship Beauty" },
-          ].map(({ num, label }) => (
             <div
-              key={label}
-              className="p-6 rounded-2xl border border-cream/10 bg-cream/5 backdrop-blur-sm hover:border-golden/40 transition-all duration-300 group"
+              className="font-display font-black text-golden mb-4 group-hover:scale-105 transition-transform duration-300 origin-left"
+              style={{ fontSize: "clamp(52px, 7vw, 100px)", lineHeight: 1 }}
             >
-              <div className="text-4xl font-display font-black text-golden mb-2 group-hover:scale-110 transition-transform duration-300">
-                {num}
-              </div>
-              <div className="text-cream/50 text-sm font-display tracking-wide">
-                {label}
-              </div>
+              {num}
             </div>
-          ))}
-        </div>
+            <div className="text-cream font-display font-black text-2xl tracking-wide mb-3">
+              {label}
+            </div>
+            <div className="text-cream/40 text-sm font-sans leading-relaxed">
+              {sub}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
