@@ -5,6 +5,9 @@ export default function Footer() {
       <p className="text-cream/30 text-xs font-display tracking-widest">
         © 2025 Faheem Ahmed · Built with React & Tailwind
       </p>
+      <p className="text-cream/30 text-xs font-display tracking-widest">
+        Icons by Vecteezy
+      </p>
     </footer>
   );
 }
