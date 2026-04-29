@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import faheemPhoto from "../assets/faheem.jpg";
+import MorphText from "./MorphText";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -162,7 +163,11 @@ export default function Hero() {
           <br />
           <span className="text-golden text-[0.95em]">FRONT END</span>
           <br />
-          <span className="text-[0.9em]">& PRETTY THINGS.</span>
+          <MorphText
+            original="& PRETTY THINGS."
+            replacement="& KAWAII THINGS."
+            radius={120}
+          />
         </h1>
       </div>
 
@@ -175,7 +180,11 @@ export default function Hero() {
           className="font-display font-black leading-[1.1] text-cream text-right md:text-left"
           style={{ fontSize: "clamp(18px, 2.5vw, 36px)" }}
         >
-          SOFTWARE ENGINEER
+          <MorphText
+            original="SOFTWARE ENGINEER"
+            replacement="BEROZEGAAR - "
+            radius={200}
+          />
           <br />
           <span className="text-golden text-[0.95em]">& CREATIVE</span>
           <br />
