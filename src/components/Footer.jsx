@@ -5,17 +5,6 @@ export default function Footer() {
       <p className="text-cream/30 text-xs font-display tracking-widest">
         © 2025 Faheem Ahmed · Built with React & Tailwind
       </p>
-      <div className="flex items-center gap-6">
-        {["GitHub", "LinkedIn", "Twitter"].map((s) => (
-          <a
-            key={s}
-            href="#"
-            className="text-cream/30 hover:text-golden text-xs font-display tracking-widest uppercase transition-colors duration-300"
-          >
-            {s}
-          </a>
-        ))}
-      </div>
     </footer>
   );
 }

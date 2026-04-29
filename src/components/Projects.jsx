@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ignittonImg from "../assets/igniton.png";
 import dnaAlignImg from "../assets/dnaalign.png";
 import osLowImg from "../assets/os-low.png";
+import incandescentImg from "../assets/incandescent.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -58,6 +59,19 @@ const projects = [
     stripes: false,
     image: osLowImg,
     link: "https://os-low.vercel.app",
+  },
+  {
+    id: "05",
+    name: "Incandescent",
+    tag: "World Clock",
+    tagline: "Time across every region.",
+    desc: "A beautiful world clock application that uses a time API to display current time across all 24 hour regions. Perfect for coordinating across timezones.",
+    stack: ["React", "API", "Tailwind"],
+    gradient: "from-[#1a0a15] via-[#2d0a1a] to-[#3d0a25]",
+    accent: "#f59e0b",
+    stripes: false,
+    image: incandescentImg,
+    link: "https://incandescent-mu.vercel.app",
   },
 ];
 

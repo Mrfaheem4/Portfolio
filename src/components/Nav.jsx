@@ -37,16 +37,6 @@ export default function Nav() {
             </a>
           ))}
         </div>
-
-        {/* Right: Hire Me */}
-        <div className="flex-1 flex justify-end">
-          <a
-            href="#contact"
-            className="px-6 py-2.5 text-golden text-xs tracking-[0.2em] uppercase hover:text-golden/80 transition-all duration-300 font-display"
-          >
-            Hire Me
-          </a>
-        </div>
       </div>
     </nav>
   );

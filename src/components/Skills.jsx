@@ -1,4 +1,8 @@
 import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const skills = [
   { name: "React JS", level: "Expert" },
@@ -12,71 +16,108 @@ const skills = [
 
 export default function Skills() {
   const sectionRef = useRef(null);
+  const ghostRef = useRef(null);
+  const pillsRef = useRef([]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((e) => {
-          if (e.isIntersecting) e.target.classList.add("visible");
-        }),
-      { threshold: 0.1 },
-    );
-    sectionRef.current
-      ?.querySelectorAll(".reveal")
-      .forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    const ctx = gsap.context(() => {
+      // Ghost fade in + scroll parallax
+      gsap.fromTo(
+        ghostRef.current,
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: -60,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 90%",
+            end: "bottom top",
+            scrub: 2,
+          },
+        },
+      );
+
+      // Pills staggered entrance
+      gsap.fromTo(
+        pillsRef.current,
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          ease: "power3.out",
+          stagger: 0.08,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 70%",
+            once: true,
+          },
+        },
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
     <section
       id="skills"
       ref={sectionRef}
-      className="relative py-32 px-10 overflow-hidden"
+      className="relative w-full flex flex-col items-center"
+      style={{ paddingTop: "12rem", paddingBottom: "12rem" }}
     >
-      {/* Ghost text */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-        <span
-          className="text-outline font-display font-black"
-          style={{ fontSize: "clamp(80px, 16vw, 200px)" }}
-        >
-          STACK
-        </span>
-      </div>
+      {/* CENTERED CONTAINER */}
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-10 flex flex-col items-center">
+        {/* TOP HEADER */}
+        <div className="w-full text-center">
+          <p className="text-golden text-xs tracking-[0.3em] uppercase font-display mb-4">
+            What I Use
+          </p>
+          <h2
+            className="font-display font-black text-cream"
+            style={{ fontSize: "clamp(32px, 5vw, 60px)" }}
+          >
+            My Tech Stack
+          </h2>
+        </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto">
-        <p className="text-golden text-xs tracking-[0.3em] uppercase font-display mb-4">
-          What I Use
-        </p>
-        <h2
-          className="font-display font-black text-cream mb-20"
-          style={{ fontSize: "clamp(32px, 5vw, 60px)" }}
+        {/* GHOST TEXT */}
+        <div
+          ref={ghostRef}
+          className="relative w-full flex items-center justify-center pointer-events-none select-none overflow-hidden"
+          style={{
+            height: "28rem",
+            marginTop: "-2rem",
+            marginBottom: "-4rem",
+            opacity: 0,
+          }}
         >
-          My Tech Stack
-        </h2>
+          <span
+            className="font-display font-black whitespace-nowrap bg-gradient-to-b from-gray-400 to-black bg-clip-text text-transparent"
+            style={{
+              fontSize: "clamp(80px, 16vw, 200px)",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            STACK
+          </span>
+        </div>
 
-        {/* Scattered pills layout */}
-        <div className="flex flex-wrap gap-4 max-w-3xl">
-          {skills.map(({ name, level }, i) => (
-            <div
-              key={name}
-              className="reveal group"
-              style={{ transitionDelay: `${i * 0.08}s` }}
-            >
+        {/* SKILLS PILLS */}
+        <div className="w-full flex justify-center">
+          <div className="flex flex-wrap gap-8 justify-center max-w-5xl">
+            {skills.map(({ name, level }, i) => (
               <div
-                className={`px-6 py-3 rounded-full border transition-all duration-300 flex items-center gap-3
-                ${
-                  i % 3 === 0
-                    ? "border-golden/50 bg-golden/10 hover:bg-golden/20"
-                    : "border-cream/15 bg-cream/5 hover:border-golden/30 hover:bg-cream/10"
-                }`}
+                key={name}
+                ref={(el) => (pillsRef.current[i] = el)}
+                style={{ opacity: 0, transform: "translateY(40px)" }}
               >
-                <span className="font-display font-bold text-cream text-sm tracking-wide">
+                <div className="px-8 py-8 rounded-2xl bg-white border border-black/5 text-black text-lg font-bold font-display tracking-widest shadow-2xl hover:shadow-golden/30 transition-all duration-300 flex items-center justify-center text-center">
                   {name}
-                </span>
-                <span className="text-xs text-cream/30 font-sans">{level}</span>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
