@@ -64,7 +64,7 @@ export default function Skills() {
       id="skills"
       ref={sectionRef}
       className="relative w-full flex flex-col items-center"
-      style={{ paddingTop: "12rem", paddingBottom: "12rem" }}
+      style={{ paddingTop: "6rem", paddingBottom: "6rem" }}
     >
       {/* CENTERED CONTAINER */}
       <div className="relative z-10 w-full max-w-5xl mx-auto px-10 flex flex-col items-center">
@@ -74,7 +74,7 @@ export default function Skills() {
             What I Use
           </p>
           <h2
-            className="font-display font-black text-cream"
+            className="font-display font-black text-black"
             style={{ fontSize: "clamp(32px, 5vw, 60px)" }}
           >
             My Tech Stack
@@ -93,7 +93,7 @@ export default function Skills() {
           }}
         >
           <span
-            className="font-display font-black whitespace-nowrap bg-gradient-to-b from-gray-400 to-black bg-clip-text text-transparent"
+            className="font-display font-black whitespace-nowrap bg-gradient-to-b from-black to-gray-800 bg-clip-text text-transparent"
             style={{
               fontSize: "clamp(80px, 16vw, 200px)",
               letterSpacing: "-0.02em",

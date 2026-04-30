@@ -121,7 +121,7 @@ export default function Projects() {
       id="work"
       ref={sectionRef}
       className="relative w-full flex flex-col items-center"
-      style={{ paddingTop: "12rem", paddingBottom: "12rem" }}
+      style={{ paddingTop: "6rem", paddingBottom: "6rem" }}
     >
       {/* CENTERED CONTAINER */}
       <div className="relative z-10 w-full max-w-5xl mx-auto px-10 flex flex-col items-center">
@@ -131,7 +131,7 @@ export default function Projects() {
             Selected Work
           </p>
           <h2
-            className="font-display font-black text-cream"
+            className="font-display font-black text-black"
             style={{ fontSize: "clamp(32px, 5vw, 60px)" }}
           >
             Things I've Built
@@ -150,7 +150,7 @@ export default function Projects() {
           }}
         >
           <span
-            className="font-display font-black whitespace-nowrap bg-gradient-to-b from-gray-400 to-black bg-clip-text text-transparent"
+            className="font-display font-black whitespace-nowrap bg-gradient-to-b from-black to-gray-800 bg-clip-text text-transparent"
             style={{
               fontSize: "clamp(80px, 16vw, 200px)",
               letterSpacing: "-0.02em",
@@ -248,7 +248,7 @@ export default function Projects() {
                   )}
 
                   {/* Project number */}
-                  <div className="absolute top-6 right-6 font-display font-black text-white/10 text-6xl leading-none select-none">
+                  <div className="absolute top-6 right-6 font-display font-black text-black/10 text-6xl leading-none select-none">
                     {p.id}
                   </div>
 
@@ -262,11 +262,11 @@ export default function Projects() {
                 </div>
 
                 {/* CAPTION — below the image */}
-                <div className="mt-8 text-center">
-                  <p className="text-white/40 text-sm font-display font-bold tracking-widest uppercase mb-6">
+                <div className="mt-16 text-center">
+                  <p className="text-gray-600 text-sm font-display font-bold tracking-widest uppercase mb-6">
                     {p.tagline}
                   </p>
-                  <p className="text-white/70 text-base font-sans mb-8 max-w-sm mx-auto">
+                  <p className="text-gray-700 text-base font-sans mb-8 max-w-sm mx-auto">
                     {p.desc}
                   </p>
                   <div className="flex flex-col items-center justify-center gap-4">
@@ -274,21 +274,21 @@ export default function Projects() {
                       {p.stack.map((s) => (
                         <span
                           key={s}
-                          className="px-3 py-1 rounded-full text-xs font-display tracking-wide border border-white/20 text-white/60"
+                          className="px-3 py-1 rounded-full text-xs font-display tracking-wide border border-gray-300 text-gray-700"
                         >
                           {s}
                         </span>
                       ))}
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="px-5 py-2 rounded-full font-display font-bold tracking-widest uppercase text-xs text-white border border-white/20 bg-white/5">
+                      <span className="px-5 py-2 rounded-full font-display font-bold tracking-widest uppercase text-xs text-black border border-gray-300 bg-gray-100">
                         {p.name}
                       </span>
                       <a
                         href={p.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-10 h-10 rounded-full flex items-center justify-center border border-white/20 bg-white/5 hover:bg-white/20 transition-all duration-300 text-white text-sm"
+                        className="w-10 h-10 rounded-full flex items-center justify-center border border-gray-300 bg-gray-100 hover:bg-gray-200 transition-all duration-300 text-black text-sm"
                       >
                         ↗
                       </a>

@@ -13,7 +13,7 @@ export default function Nav() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 w-full ${
         scrolled
-          ? "bg-charcoal/80 backdrop-blur-md border-b border-white/5"
+          ? "bg-white/80 backdrop-blur-md border-b border-gray-300"
           : "bg-transparent"
       }`}
     >
@@ -31,7 +31,7 @@ export default function Nav() {
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
-              className="text-cream/50 hover:text-cream text-xs tracking-[0.2em] uppercase transition-colors duration-300 font-display"
+              className="text-gray-600 hover:text-black text-xs tracking-[0.2em] uppercase transition-colors duration-300 font-display"
             >
               {item}
             </a>

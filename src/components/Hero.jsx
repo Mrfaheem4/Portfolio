@@ -75,7 +75,7 @@ export default function Hero() {
         className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden"
       >
         <span
-          className="font-display font-black whitespace-nowrap bg-gradient-to-b from-gray-400 to-black bg-clip-text text-transparent"
+          className="font-display font-black whitespace-nowrap bg-gradient-to-b from-black to-gray-800 bg-clip-text text-transparent"
           style={{
             fontSize: "clamp(85px, 18vw, 220px)",
             letterSpacing: "-0.02em",
@@ -166,11 +166,11 @@ export default function Hero() {
 
       {/* LEFT CONTENT */}
       <div ref={leftDivRef} className="absolute bottom-16 left-10 z-10">
-        <p className="text-cream/50 text-xs tracking-[0.2em] uppercase font-display mb-3">
+        <p className="text-gray-600 text-xs tracking-[0.2em] uppercase font-display mb-3">
           Hi 👋 I'm Faheem Ahmed
         </p>
         <h1
-          className="font-display font-black leading-[1.1] text-cream"
+          className="font-display font-black leading-[1.1] text-black"
           style={{ fontSize: "clamp(28px, 4vw, 56px)" }}
         >
           WEB DESIGN,
@@ -187,11 +187,11 @@ export default function Hero() {
 
       {/* RIGHT CONTENT */}
       <div ref={rightDivRef} className="absolute bottom-16 right-10 z-10">
-        <p className="text-cream/50 text-xs tracking-[0.2em] uppercase font-display mb-3">
+        <p className="text-gray-600 text-xs tracking-[0.2em] uppercase font-display mb-3">
           A bit about me
         </p>
         <h2
-          className="font-display font-black leading-[1.1] text-cream text-right md:text-left"
+          className="font-display font-black leading-[1.1] text-black text-right md:text-left"
           style={{ fontSize: "clamp(18px, 2.5vw, 36px)" }}
         >
           <MorphText
@@ -208,7 +208,7 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
-        <span className="text-cream/30 text-xs tracking-widest uppercase font-display">
+        <span className="text-gray-600 text-xs tracking-widest uppercase font-display">
           Scroll
         </span>
         <div className="w-px h-8 bg-gradient-to-b from-golden/60 to-transparent" />

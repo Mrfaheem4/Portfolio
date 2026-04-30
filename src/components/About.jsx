@@ -103,7 +103,7 @@ export default function About() {
       id="about"
       ref={sectionRef}
       className="relative w-full flex flex-col items-center"
-      style={{ paddingTop: "12rem", paddingBottom: "12rem" }}
+      style={{ paddingTop: "4rem", paddingBottom: "6rem" }}
     >
       {/* TOP CONTENT */}
       <div className="relative z-10 w-full max-w-5xl mx-auto px-10 flex flex-col items-center text-center">
@@ -111,12 +111,12 @@ export default function About() {
           ref={taglineRef}
           className="text-golden text-xs tracking-[0.4em] uppercase font-display mb-12 opacity-0"
         >
-          Hi 👋 — Who I Am
+          Hi — Who AM i ?
         </p>
 
         <div
           ref={headingRef}
-          className="font-display font-black text-cream mb-16 w-full"
+          className="font-display font-black text-black mb-16 w-full"
           style={{ fontSize: "clamp(40px, 6vw, 88px)", lineHeight: 1.15 }}
         >
           <div className="overflow-hidden mb-4">
@@ -154,7 +154,7 @@ export default function About() {
 
         <p
           ref={bioRef}
-          className="text-cream/50 text-lg leading-[2.2] font-sans opacity-0 max-w-2xl mb-12"
+          className="text-gray-700 text-lg leading-[2.2] font-sans opacity-0 max-w-2xl mb-12"
         >
           Currently studying Software Engineering at NUST. I build web
           experiences that make people stop and stare — obsessing over the curve
@@ -182,7 +182,7 @@ export default function About() {
         }}
       >
         <span
-          className="font-display font-black whitespace-nowrap bg-gradient-to-b from-gray-400 to-black bg-clip-text text-transparent"
+          className="font-display font-black whitespace-nowrap bg-gradient-to-b from-black to-gray-800 bg-clip-text text-transparent"
           style={{
             fontSize: "clamp(85px, 18vw, 220px)",
             letterSpacing: "-0.02em",
@@ -195,7 +195,7 @@ export default function About() {
       {/* STATS GRID */}
       <div
         ref={statsRef}
-        className="relative z-10 w-full max-w-5xl mx-auto px-10 grid grid-cols-2 gap-6"
+        className="relative z-10 w-full max-w-5xl mx-auto px-10 grid grid-cols-2 gap-6 place-items-center"
       >
         {[
           {
@@ -217,20 +217,21 @@ export default function About() {
         ].map(({ num, label, sub }) => (
           <div
             key={label}
-            className="stat-card opacity-0 p-12 rounded-3xl transition-all duration-500 group text-left"
-            style={{ background: "rgba(245, 240, 232, 0.04)" }}
+            className="stat-card opacity-0 w-full rounded-3xl transition-all duration-500 group text-left"
           >
-            <div
-              className="font-display font-black text-golden mb-4 group-hover:scale-105 transition-transform duration-300 origin-left"
-              style={{ fontSize: "clamp(52px, 7vw, 100px)", lineHeight: 1 }}
-            >
-              {num}
-            </div>
-            <div className="text-cream font-display font-black text-2xl tracking-wide mb-3">
-              {label}
-            </div>
-            <div className="text-cream/40 text-sm font-sans leading-relaxed">
-              {sub}
+            <div className="p-6">
+              <div
+                className="font-display font-black text-golden mb-4 group-hover:scale-105 transition-transform duration-300 origin-left"
+                style={{ fontSize: "clamp(52px, 7vw, 100px)", lineHeight: 1 }}
+              >
+                {num}
+              </div>
+              <div className="text-black font-display font-black text-2xl tracking-wide mb-3">
+                {label}
+              </div>
+              <div className="text-gray-600 text-sm font-sans leading-relaxed">
+                {sub}
+              </div>
             </div>
           </div>
         ))}
