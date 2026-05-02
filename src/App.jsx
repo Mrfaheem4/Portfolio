@@ -28,7 +28,7 @@ function App() {
         scrollTrigger: {
           trigger: hero,
           start: "top top",
-          end: "+=150%",
+          end: "+=75%",
           pin: true,
           scrub: 0.8,
           anticipatePin: 0,
@@ -66,23 +66,23 @@ function App() {
       {/* Hero wrapper — gets pinned */}
       <div ref={heroWrapRef} className="relative z-10">
         <Hero />
+      </div>
 
-        {/* Signature between Hero and About */}
-        <div
-          className="relative z-20 flex justify-center pointer-events-none"
-          style={{ marginTop: "-50px", marginBottom: "-150px" }}
-        >
-          <img
-            src={signatureSvg}
-            alt="signature"
-            style={{
-              height: "400px",
-              width: "auto",
-              filter:
-                "drop-shadow(0 0 0px #d4843a) brightness(0%) sepia(100%) hue-rotate(30deg) saturate(2)",
-            }}
-          />
-        </div>
+      {/* Signature between Hero and About */}
+      <div
+        className="relative z-20 flex justify-center pointer-events-none"
+        style={{ paddingTop: "0.5rem", paddingBottom: "2rem" }}
+      >
+        <img
+          src={signatureSvg}
+          alt="signature"
+          style={{
+            height: "400px",
+            width: "auto",
+            filter:
+              "drop-shadow(0 0 0px #d4843a) brightness(0%) sepia(100%) hue-rotate(30deg) saturate(2)",
+          }}
+        />
       </div>
 
       {/* Everything below scrolls normally after hero unpins */}
