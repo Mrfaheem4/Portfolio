@@ -195,7 +195,7 @@ export default function About() {
       {/* STATS GRID */}
       <div
         ref={statsRef}
-        className="relative z-10 w-full max-w-5xl mx-auto px-10 grid grid-cols-2 gap-6 place-items-center"
+        className="relative z-10 w-full max-w-5xl mx-auto text-center px-10 grid grid-cols-2 gap-6 place-items-center"
       >
         {[
           {
@@ -217,11 +217,11 @@ export default function About() {
         ].map(({ num, label, sub }) => (
           <div
             key={label}
-            className="stat-card opacity-0 w-full rounded-3xl transition-all duration-500 group text-left"
+            className="stat-card opacity-0 w-full rounded-3xl transition-all duration-500 group text-center"
           >
             <div className="p-6">
               <div
-                className="font-display font-black text-golden mb-4 group-hover:scale-105 transition-transform duration-300 origin-left"
+                className="font-display font-black text-golden mb-4 group-hover:scale-105 transition-transform duration-300 origin-center"
                 style={{ fontSize: "clamp(52px, 7vw, 100px)", lineHeight: 1 }}
               >
                 {num}

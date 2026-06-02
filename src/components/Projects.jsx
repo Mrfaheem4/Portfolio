@@ -262,14 +262,14 @@ export default function Projects() {
                 </div>
 
                 {/* CAPTION — below the image */}
-                <div className="mt-16 text-center">
-                  <p className="text-gray-600 text-sm font-display font-bold tracking-widest uppercase mb-6">
+                <div className="mt-24 px-6 py-8">
+                  <p className="text-gray-700 text-base font-display font-black tracking-widest uppercase mb-8 text-center">
                     {p.tagline}
                   </p>
-                  <p className="text-gray-700 text-base font-sans mb-8 max-w-sm mx-auto">
+                  <p className="text-gray-700 text-base font-sans leading-[1.8] mb-12 text-center">
                     {p.desc}
                   </p>
-                  <div className="flex flex-col items-center justify-center gap-4">
+                  <div className="flex flex-col items-center justify-center gap-6">
                     <div className="flex items-center gap-2 flex-wrap justify-center">
                       {p.stack.map((s) => (
                         <span
