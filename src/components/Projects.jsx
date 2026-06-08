@@ -5,6 +5,7 @@ import ignittonImg from "../assets/igniton.png";
 import dnaAlignImg from "../assets/dnaalign.png";
 import osLowImg from "../assets/os-low.png";
 import incandescentImg from "../assets/incandescent.png";
+import drawbee from "../assets/drawbee.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,8 +23,22 @@ const projects = [
     image: ignittonImg,
     link: "https://ignitioncars.vercel.app",
   },
+
   {
     id: "02",
+    name: "DrawBee",
+    tag: "White Board",
+    tagline: "Collaborative drawing, reimagined.",
+    desc: "A real-time collaborative drawing app with a focus on creativity and ease of use.",
+    stack: ["Knova js", "React", "Supabase", "Postgre SQL"],
+    gradient: "from-[#0a0a0a] via-[#1a0a00] to-[#2d1200]",
+    accent: "#d4843a",
+    stripes: true,
+    image: drawbee,
+    link: "https://github.com/Mrfaheem4/DrawBee",
+  },
+  {
+    id: "03",
     name: "Synesthesia",
     tag: "Creative Dev",
     tagline: "What does your playlist look like?",
@@ -35,7 +50,7 @@ const projects = [
     link: "https://github.com/Mrfaheem4/Synesthesia",
   },
   {
-    id: "03",
+    id: "04",
     name: "DNA Align",
     tag: "Bioinformatics",
     tagline: "DNA sequence matching simplified.",
@@ -48,7 +63,7 @@ const projects = [
     link: "https://dnaalign.vercel.app",
   },
   {
-    id: "04",
+    id: "05",
     name: "OS Kernel Simulator",
     tag: "Systems Programming",
     tagline: "Operating system operations visualized.",
@@ -61,7 +76,7 @@ const projects = [
     link: "https://os-low.vercel.app",
   },
   {
-    id: "05",
+    id: "06",
     name: "Incandescent",
     tag: "World Clock",
     tagline: "Time across every region.",
