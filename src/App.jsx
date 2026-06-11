@@ -1,7 +1,6 @@
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Cursor from "./components/Cursor";
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -60,7 +59,6 @@ function App() {
 
   return (
     <main className="bg-gray-100 overflow-x-hidden">
-      <Cursor />
       <Nav />
 
       {/* Hero wrapper — gets pinned */}
