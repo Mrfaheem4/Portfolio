@@ -6,6 +6,7 @@ import dnaAlignImg from "../assets/dnaalign.png";
 import osLowImg from "../assets/os-low.png";
 import incandescentImg from "../assets/incandescent.png";
 import drawbee from "../assets/drawbee.png";
+import divinityImg from "../assets/divinity.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -39,15 +40,16 @@ const projects = [
   },
   {
     id: "03",
-    name: "Synesthesia",
-    tag: "Creative Dev",
-    tagline: "What does your playlist look like?",
-    desc: "Music visualized through shapes and colors. Feed it a track, watch it think in gradients and geometry.",
-    stack: ["React", "TypeScript", "Three.js"],
-    gradient: "from-[#050510] via-[#0d0520] to-[#150a2d]",
-    accent: "#8b5cf6",
+    name: "Divinity",
+    tag: "Desktop Browser",
+    tagline: "A browser, built from the ground up.",
+    desc: "A custom Electron-based desktop web browser with a native multi-tab engine, real-time IPC-driven state synchronization, and a 3D landing experience rendered with Three.js.",
+    stack: ["Electron", "React", "TypeScript", "Three.js"],
+    gradient: "from-[#0a0d16] via-[#1c1440] to-[#2d1b5c]",
+    accent: "#7C5CFF",
     stripes: false,
-    link: "https://github.com/Mrfaheem4/Synesthesia",
+    image: divinityImg,
+    link: "https://github.com/Mrfaheem4/Divinity",
   },
   {
     id: "04",
@@ -87,6 +89,18 @@ const projects = [
     stripes: false,
     image: incandescentImg,
     link: "https://incandescent-mu.vercel.app",
+  },
+  {
+    id: "07",
+    name: "Synesthesia",
+    tag: "Creative Dev",
+    tagline: "What does your playlist look like?",
+    desc: "Music visualized through shapes and colors. Feed it a track, watch it think in gradients and geometry.",
+    stack: ["React", "TypeScript", "Three.js"],
+    gradient: "from-[#050510] via-[#0d0520] to-[#150a2d]",
+    accent: "#8b5cf6",
+    stripes: false,
+    link: "https://github.com/Mrfaheem4/Synesthesia",
   },
 ];
 
