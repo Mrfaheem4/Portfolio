@@ -1,43 +1,31 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+
+const links = [["Work", "work"], ["About", "about"], ["Stack", "skills"], ["Contact", "contact"]];
 
 export default function Nav() {
-  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    if (!open) return;
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        document.getElementById("menu-toggle")?.focus();
+      }
+    };
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [open]);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 w-full ${
-        scrolled
-          ? "bg-white/80 backdrop-blur-md border-b border-gray-300"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-[1440px] w-full mx-auto px-6 md:px-12 py-5 flex items-center justify-between">
-        {/* Left: Logo */}
-        <div className="flex-1">
-          <a href="#" className="font-script text-2xl text-golden">
-            Faheem.
-          </a>
+    <header className="site-header">
+      <nav className="container nav" aria-label="Main navigation">
+        <a className="wordmark" href="#home" onClick={() => setOpen(false)} aria-label="Faheem Ahmed, home">faheem<span aria-hidden="true">.</span></a>
+        <button id="menu-toggle" className="menu-toggle" type="button" aria-expanded={open} aria-controls="nav-links" onClick={() => setOpen(!open)}>{open ? "Close" : "Menu"}<span aria-hidden="true">{open ? "−" : "+"}</span></button>
+        <div id="nav-links" className={`nav-links${open ? " is-open" : ""}`}>
+          {links.map(([label, id]) => <a key={id} href={`#${id}`} onClick={() => setOpen(false)}>{label}{id === "contact" && <span aria-hidden="true"> ↗</span>}</a>)}
         </div>
-
-        {/* Center: Links */}
-        <div className="hidden md:flex items-center gap-10">
-          {["Home", "Work", "About", "Contact"].map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="text-gray-600 hover:text-black text-xs tracking-[0.2em] uppercase transition-colors duration-300 font-display"
-            >
-              {item}
-            </a>
-          ))}
-        </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 }

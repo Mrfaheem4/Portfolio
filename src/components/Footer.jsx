@@ -1,13 +1,9 @@
 export default function Footer() {
   return (
-    <footer className="border-t border-gray-300 px-10 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-      <span className="font-script text-xl text-golden">Faheem.</span>
-      <p className="text-gray-600 text-xs font-display tracking-widest">
-        © 2025 Faheem Ahmed · Built with React & Tailwind
-      </p>
-      <p className="text-gray-600 text-xs font-display tracking-widest">
-        Icons by Vecteezy
-      </p>
-    </footer>
+    <footer className="site-footer"><div className="container footer-inner">
+      <a className="wordmark" href="#home" aria-label="Faheem Ahmed, back to top">faheem<span aria-hidden="true">.</span></a>
+      <p>© {new Date().getFullYear()} Faheem Ahmed</p>
+      <div className="footer-links"><a href="https://github.com/Mrfaheem4" target="_blank" rel="noopener noreferrer">GitHub ↗<span className="sr-only"> (opens in a new tab)</span></a><a href="#home">Back to top ↑</a></div>
+    </div></footer>
   );
 }
