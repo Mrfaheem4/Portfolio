@@ -15,7 +15,9 @@ export default function Contact() {
           </h2>
           <a
             className="contact-arrow"
-            href="mailto:mrfaheem010@gmail.com"
+            href="https://mail.google.com/mail/?view=cm&to=mrfaheem010@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="Email Faheem about your idea"
           >
             ↗
@@ -27,7 +29,12 @@ export default function Contact() {
             <br />
             I’d love to hear what you’re thinking.
           </p>
-          <a className="contact-email" href="mailto:mrfaheem010@gmail.com">
+          <a
+            className="contact-email"
+            href="https://mail.google.com/mail/?view=cm&to=mrfaheem010@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             mrfaheem010@gmail.com <span aria-hidden="true">↗</span>
           </a>
         </div>

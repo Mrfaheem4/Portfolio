@@ -24,7 +24,12 @@ export default function Hero() {
           <a className="button button-primary" href="#work">
             Explore my work <span aria-hidden="true">↗</span>
           </a>
-          <a className="text-link" href="mailto:mrfaheem010@gmail.com">
+          <a
+            className="text-link"
+            href="https://mail.google.com/mail/?view=cm&to=mrfaheem010@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Let’s talk <span aria-hidden="true">↗</span>
           </a>
         </div>
