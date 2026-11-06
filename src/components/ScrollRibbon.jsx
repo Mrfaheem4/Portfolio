@@ -5,7 +5,7 @@ const palette = [
   { section: "home", progress: 0, color: "var(--ribbon-home)" },
   { section: "home", progress: 0.72, color: "var(--ribbon-home)" },
   { section: "work", progress: 0, color: "var(--ribbon-work)" },
-  { section: "work", progress: 0.58, color: "var(--ribbon-olive)" },
+  { section: "work", progress: 0.58, color: "var(--ribbon-mint)" },
   { section: "experience", progress: 0, color: "var(--ribbon-experience)" },
   { section: "about", progress: 0, color: "var(--ribbon-about)" },
   { section: "skills", progress: 0, color: "var(--ribbon-skills)" },

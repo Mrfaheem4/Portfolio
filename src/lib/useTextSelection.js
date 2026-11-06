@@ -3,7 +3,7 @@ import { useEffect } from "react";
 export default function useTextSelection() {
   useEffect(() => {
     const targets = [...document.querySelectorAll(
-      "main p, main h3, main .text-link, .project-stack li, .hero-bottom > span, .portrait-caption strong, .portrait-caption div > span, .about-education > span, .work-footnote > span",
+      "main > section :is(p, .text-link, .project-stack li, .experience-outcomes li, .hero-bottom > span, .portrait-caption div > span, .about-education > span, .work-footnote > span, .experience-type, .project-index, .contact-email):not(.experience-company-name)",
     )];
     const marked = new Set();
 

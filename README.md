@@ -1,6 +1,6 @@
 # Faheem Ahmed — Portfolio
 
-A responsive personal portfolio built with React and Vite. The design uses a near-black canvas, bright lime, yellow, cyan, lilac and orange, bold Manrope typography, and shaped imagery. A vivid scroll-drawn ribbon connects the sections and changes color along the page.
+A responsive personal portfolio built with React and Vite. The design pairs ink blue and deep teal with warm rose and pale mint accents, bold Manrope typography, and shaped imagery. Each section has a distinct solid background. A bright scroll-drawn ribbon starts in a soft, near-white mint green and moves through gold, mint, and sky blue. The supplied paper image adds a faint texture behind the content.
 
 ## Development
 
@@ -29,7 +29,7 @@ On Windows, use `npm.cmd` if PowerShell blocks the `npm.ps1` launcher. Productio
 - `src/index.css`: component styles, animation, and responsive layouts.
 - `index.html`: page title, description, and social metadata.
 
-Content is visible immediately. The hero settles into view once, and section headings gently reveal as they enter view. The decorative SVG ribbon draws and retracts with scrolling behind the content, at 60px on desktop and 40px on phones. Text containers stay transparent and images remain above it. Only the large headings retain an outline; smaller text on the dark canvas changes contrast where the bright ribbon passes behind it. The light internship and contact sections use dark text throughout. The ribbon recalculates when the layout resizes and becomes complete and static for reduced-motion preferences. Smooth scrolling, text reveals, and hover transitions also honor reduced motion. Navigation includes a mobile disclosure menu, Escape-key focus restoration, keyboard focus styles, and a skip link.
+Content is visible immediately. The hero settles into view once, and section headings gently reveal as they enter view. The decorative SVG ribbon draws and retracts with scrolling behind the content, at 60px on desktop and 40px on phones. Text containers stay transparent and images remain above it. Body copy, metadata, lists, and text links use difference blending to change color exactly where the ribbon passes beneath them. Headings, project titles, names, and opaque controls keep their original colors. Selecting body text temporarily suspends its blending so the selection remains readable. The paper texture in `public/Texturelabs_Paper_178M.jpg` repeats at a fixed scale on a faint screen-blended background layer below the ribbon and content; its strength is controlled by `--texture-opacity`. The sections retain separate solid colors. Project mounts use red, teal, and rose, and toolkit labels share a blue surface. The ribbon recalculates when the layout resizes and becomes complete and static for reduced-motion preferences. Smooth scrolling, text reveals, and hover transitions also honor reduced motion. Navigation includes a mobile disclosure menu, Escape-key focus restoration, keyboard focus styles, and a skip link.
 
 Google Fonts are optional external resources; local system font fallbacks remain available. Styling uses plain CSS, and the ribbon uses native SVG and browser APIs without animation dependencies.
 

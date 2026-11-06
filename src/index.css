@@ -1,17 +1,4 @@
-/* Hallmark · shape: Split Studio · genre: editorial · theme: brand · redesign: full
- * paper: near-black · accent: electric lime · display: Manrope · body: DM Sans · hero: Stage · nav: edge-aligned bar · footer: colophon
- * signature: bold portrait frame and a bright scroll-drawn colour ribbon · axes: dark/grotesk-heavy/chromatic · posture: Full palette · v2.0.0 */
-/* Hallmark · pre-emit critique: P4 H5 E4 S4 R4 V4 · weakest: R, kept the user's ribbon as the sole scroll choreography and removed repeated decorative labels */
-/* Hallmark · reworded "Built with intent. Made to be explored." to "Selected work." · 54 promotes the plain section label to its heading */
-/* Hallmark · reworded "Beyond the classroom." to "Work experience." · 54 promotes the plain section label to its heading */
-/* Hallmark · reworded "Good ideas. The right tools." to "My toolkit." · 54 promotes the plain section label to its heading */
-/* Hallmark · dismissed 28a · Projects, About and Experience are below the fold; the portrait LCP has fetchPriority high and is not lazy-loaded */
-/* Hallmark · reworded "I’m Faheem Ahmed. I turn ideas into expressive, intuitive digital experiences, with a little curiosity and a lot of attention to detail." to "I’m Faheem Ahmed, a software engineer building expressive digital experiences." · 58 tightens the hero to one sentence */
-/* Hallmark · dropped decorative section eyebrows and literal arrow glyphs · 54 and 63 replace announcing labels with headings and accessible SVG icons */
-/* Hallmark · hero-review: in-thread · 2 mechanical findings resolved by correcting hero identification; all first-screen content fits */
-/* Hallmark · palette: near-black canvas, lilac experience, yellow contact, bright project mounts; supplied references and explicit user palette override */
-/* Hallmark · ribbon layering: transparent text containers and opaque images; large heads keep their outline, small text changes contrast through difference blending */
-/* Hallmark · finish-review: in-thread · no open findings · gap: none · final palette and adaptive text checked at eight widths, 0 FAIL and 0 REFLEX */
+/* Solid blue, teal, rose, and coral sections; bright ribbon; subtle paper grain. */
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Manrope:wght@800&display=swap");
 @import url("./tokens.css");
 @import url("./base.css");
@@ -77,6 +64,52 @@ main {
 }
 main > section {
   position: relative;
+  --text-outline: var(--section-color);
+}
+main > section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: var(--section-color);
+  border-radius: inherit;
+}
+/* The paper sits over the section paint, below the ribbon, text, and images. */
+main > section::after,
+.site-header::before,
+.site-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  border-radius: inherit;
+  background-image: url("/Texturelabs_Paper_178M.jpg");
+  background-repeat: repeat;
+  background-size: 960px auto;
+  mix-blend-mode: screen;
+  opacity: var(--texture-opacity);
+  pointer-events: none;
+}
+#home {
+  --section-color: var(--surface-home);
+}
+#work {
+  --section-color: var(--surface-work);
+}
+#experience {
+  --section-color: var(--surface-experience);
+}
+#about {
+  --section-color: var(--surface-about);
+  --color-muted: #e6cfd2;
+  --color-rule: #9f747a;
+  --color-rule-dark: #bc9498;
+}
+#skills {
+  --section-color: var(--surface-skills);
+}
+#contact {
+  --section-color: var(--surface-contact);
 }
 .container {
   width: min(var(--container), 100%);
@@ -163,6 +196,7 @@ main > section {
   top: 0;
   z-index: var(--z-sticky-nav);
   background: var(--color-paper);
+  isolation: isolate;
 }
 .nav {
   display: flex;
@@ -318,7 +352,7 @@ main > section {
   height: 100%;
   pointer-events: none;
   overflow: clip;
-  opacity: 1;
+  opacity: var(--ribbon-opacity);
 }
 .scroll-ribbon path {
   stroke-width: 60px;
@@ -328,7 +362,14 @@ main :is(h1, h2) {
   paint-order: stroke fill;
   -webkit-text-stroke: 4px var(--text-outline);
 }
-main > section:not(.experience-section):not(.contact-section) :is(p, h3, .text-link, .project-stack li, .hero-bottom > span, .portrait-caption strong, .portrait-caption div > span, .about-education > span, .work-footnote > span):not([data-text-selected]) {
+/* Titles keep their color and an edge against the ribbon. */
+main > section :is(h3, .portrait-caption strong, .experience-company-name) {
+  paint-order: stroke fill;
+  -webkit-text-stroke: 2.5px var(--section-color);
+  text-shadow: 0 1px 2px var(--section-color);
+}
+/* Blend only transparent body text, so the effect follows the ribbon's pixels. */
+main > section :is(p, .text-link, .project-stack li, .experience-outcomes li, .hero-bottom > span, .portrait-caption div > span, .about-education > span, .work-footnote > span, .experience-type, .project-index, .contact-email):not(.experience-company-name):not([data-text-selected]) {
   mix-blend-mode: difference;
 }
 
@@ -512,17 +553,6 @@ main > section:not(.experience-section):not(.contact-section) :is(p, h3, .text-l
   --color-selection-ink: var(--color-field);
   color: var(--color-field-ink);
 }
-.experience-section::before,
-.contact-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  border-radius: inherit;
-}
-.experience-section::before {
-  background: var(--color-field);
-}
 .experience-grid {
   display: grid;
   grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
@@ -646,7 +676,7 @@ main > section:not(.experience-section):not(.contact-section) :is(p, h3, .text-l
   filter: invert(1);
 }
 .stack-section {
-  padding-top: 0;
+  padding-top: var(--section-gap-s);
   padding-bottom: var(--section-gap-l);
 }
 .stack-grid {
@@ -682,20 +712,9 @@ main > section:not(.experience-section):not(.contact-section) :is(p, h3, .text-l
   border-radius: var(--radius-pill);
   font-size: var(--text-sm);
 }
-.stack-card:nth-child(1) .skill-list li {
-  background: var(--color-signal);
-  color: var(--color-signal-ink);
-}
-.stack-card:nth-child(2) .skill-list li {
-  background: var(--color-field);
-  color: var(--color-field-ink);
-}
-.stack-card:nth-child(3) .skill-list li {
-  background: var(--color-clock);
-  color: var(--color-signal-ink);
-}
 
 .contact-section {
+  --color-rule-dark: #c18a7e;
   --color-focus: var(--color-contact-ink);
   --text-outline: var(--color-contact);
   --color-selection: var(--color-contact-ink);
@@ -703,9 +722,6 @@ main > section:not(.experience-section):not(.contact-section) :is(p, h3, .text-l
   color: var(--color-contact-ink);
   padding-block: var(--section-gap-s);
   border-radius: 80px 80px 0 0;
-}
-.contact-section::before {
-  background: var(--color-contact);
 }
 .contact-heading {
   display: flex;
@@ -757,6 +773,8 @@ main > section:not(.experience-section):not(.contact-section) :is(p, h3, .text-l
   overflow-wrap: anywhere;
 }
 .site-footer {
+  position: relative;
+  isolation: isolate;
   --color-focus: var(--color-contact-ink);
   --color-accent: var(--color-contact-ink);
   --color-selection: var(--color-contact-ink);
@@ -892,9 +910,6 @@ main > section:not(.experience-section):not(.contact-section) :is(p, h3, .text-l
   .hero-bottom > span:nth-child(2) {
     max-width: 20ch;
   }
-  .scroll-ribbon {
-    opacity: 0.92;
-  }
   .scroll-ribbon path {
     stroke-width: 40px;
   }
@@ -1029,6 +1044,7 @@ main > section:not(.experience-section):not(.contact-section) :is(p, h3, .text-l
   }
   .portrait-composition {
     animation-delay: 80ms;
+    animation-fill-mode: backwards;
   }
   @keyframes settle-in {
     from {
