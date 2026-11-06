@@ -11,6 +11,7 @@
   /* Ink blue and teal, balanced by warm rose and pale mint accents. */
   --surface-home: #101f29; --surface-work: #142d3c; --surface-experience: #103c3a;
   --surface-about: #4d2631; --surface-skills: #1b3346; --surface-contact: #722f32;
+  --toolkit-blue: #355d78; --toolkit-teal: #286159; --toolkit-rose: #75434f;
   --color-paper: var(--surface-home); --color-paper-2: #355b65; --color-paper-3: #31515e;
   --color-ink: #f1ede6; --color-ink-2: #e0e8e5; --color-muted: #cbd9db;
   --color-rule: #63808a; --color-rule-dark: #92abae;
