@@ -1,28 +1,22 @@
 import portrait from "../assets/faheem.jpg";
+import signature from "../assets/signature.svg";
+import ArrowIcon from "./ArrowIcon";
 
 export default function Hero() {
   return (
     <section id="home" className="hero container" aria-labelledby="hero-title">
-      <div className="hero-copy">
-        <p className="eyebrow">
-          <span className="status-dot" aria-hidden="true" />
-          Software engineer & creative developer
-        </p>
+      <div className="intro-copy">
         <h1 id="hero-title">
           Thoughtful code.
           <br />
-          <span className="serif">Distinctive</span>
-          <br />
-          experiences<span className="accent">.</span>
+          Distinctive experiences.
         </h1>
         <p className="hero-intro">
-          I’m Faheem Ahmed. I turn ideas into expressive, intuitive digital
-          experiences — with a little curiosity and a lot of attention to
-          detail.
+          I’m Faheem Ahmed, a software engineer building expressive digital experiences.
         </p>
         <div className="hero-actions">
           <a className="button button-primary" href="#work">
-            Explore my work <span aria-hidden="true">↗</span>
+            Explore my work <ArrowIcon />
           </a>
           <a
             className="text-link"
@@ -30,40 +24,27 @@ export default function Hero() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Let’s talk <span aria-hidden="true">↗</span>
+            Let’s talk
           </a>
-        </div>
-        <div className="hero-note">
-          <span className="note-line" aria-hidden="true" />
-          Currently studying Software Engineering at NUST
         </div>
       </div>
       <div className="portrait-composition">
-        <div className="portrait-topline">
-          <span>A little craft. A lot of care.</span>
-          <span aria-hidden="true">✳</span>
-        </div>
         <div className="portrait-frame">
           <img src={portrait} alt="Faheem Ahmed" fetchPriority="high" />
         </div>
+        <img className="portrait-signature" src={signature} alt="" aria-hidden="true" />
         <div className="portrait-caption">
           <div>
             <strong>Faheem Ahmed</strong>
-            <span>Building for the web & beyond</span>
+            <span>Software engineer & creative developer</span>
           </div>
-          <span className="portrait-mark" aria-hidden="true">
-            ↗
-          </span>
+          <span className="portrait-mark" aria-hidden="true"><ArrowIcon /></span>
         </div>
-        <span className="portrait-label" aria-hidden="true">
-          Design-minded. Detail-driven.
-        </span>
       </div>
       <div className="hero-bottom">
-        <span>CODE WITH PURPOSE. DESIGN WITH PERSONALITY.</span>
-        <a href="#work">
-          Scroll to discover <span aria-hidden="true">↓</span>
-        </a>
+        <span>Software Engineering, NUST</span>
+        <span>Code with purpose. Design with personality.</span>
+        <a href="#work" aria-label="Discover selected projects"><ArrowIcon down /></a>
       </div>
     </section>
   );

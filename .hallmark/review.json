@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-06",
+  "mode": "redesign",
+  "depth": "full",
+  "scope": "site",
+  "finalPalette": "Near-black canvas; lime, yellow, cyan and lilac ribbon; lilac internship section; yellow contact section; no coral",
+  "textContrast": "Large headings retain the outline. Smaller text on dark sections uses difference blending where the ribbon passes behind it. Light sections retain dark text. Text containers are transparent.",
+  "ribbonWidth": { "desktop": 60, "mobile": 40 },
+  "reviewer": "in-thread, following Hallmark's Codex harness guidance",
+  "before": { "floorFailures": 97, "reflexFindings": 74 },
+  "after": { "floorFailures": 0, "reflexFindings": 0, "warnings": 0, "dismissed": 3 },
+  "preserved": { "linkDestinations": "18/18", "handlers": "2/2", "projects": "7/7", "recordedFigures": "2/2", "sectionIds": ["home", "work", "experience", "about", "skills", "contact"] },
+  "heroReview": { "result": "ship", "resolved": "The scanner mistook the old hero-copy class for the entire hero. Renaming the internal class to intro-copy resolved both spacing flags without changing the verified layout." },
+  "finishReview": { "result": "ship", "ideaGap": "none", "oldPageAdvantage": "No navigation, project, internship or education information became harder to find.", "mustPreserve": "The oversized type, portrait shape, authentic project screenshots and user-requested colour-changing ribbon." },
+  "checks": ["Eight widths from 320 to 1920 pixels", "Desktop and phone screenshot inspection", "No mobile horizontal overflow", "No runtime errors", "Ribbon draws with scrolling", "Ribbon section colours resolve", "Reduced motion displays the complete ribbon", "Mobile navigation, Escape and focus restoration", "Production build"],
+  "notes": ["Hallmark reports the preserved internship content density as a non-blocking redesign note.", "Below-fold lazy image warnings were dismissed because the actual LCP portrait loads eagerly with high priority.", "The three revised section headings are recorded in the CSS stamp."],
+  "copyChanges": [
+    { "before": "Built with intent. Made to be explored.", "after": "Selected work.", "reason": "Promote the original section label to a direct heading." },
+    { "before": "Beyond the classroom.", "after": "Work experience.", "reason": "Promote the original section label to a direct heading." },
+    { "before": "Good ideas. The right tools.", "after": "My toolkit.", "reason": "Promote the original section label to a direct heading." },
+    { "before": "I’m Faheem Ahmed. I turn ideas into expressive, intuitive digital experiences, with a little curiosity and a lot of attention to detail.", "after": "I’m Faheem Ahmed, a software engineer building expressive digital experiences.", "reason": "Shorten the introduction; the existing About section retains the engineering and attention-to-detail narrative." },
+    { "before": "Urban Guard · Accident detection & response", "after": "Urban Guard, accident detection & response", "reason": "Remove template punctuation without changing meaning." },
+    { "before": "CODE WITH PURPOSE. DESIGN WITH PERSONALITY.", "after": "Code with purpose. Design with personality.", "reason": "Use readable sentence case." },
+    { "before": "Currently studying Software Engineering at NUST", "after": "Software Engineering, NUST", "reason": "Present the education line concisely; About still states that the degree is in progress." }
+  ],
+  "newMaterialNeeded": "None. The page uses the user's existing images and logo."
+}

@@ -2,13 +2,14 @@ import { useEffect, useId, useRef } from "react";
 import { createRibbonPath } from "../lib/ribbonPath";
 
 const palette = [
-  { section: "home", progress: 0, color: "#000000" },
-  { section: "home", progress: 0.72, color: "#000000" },
-  { section: "work", progress: 0, color: "#174c35" },
-  { section: "work", progress: 0.58, color: "#65732c" },
-  { section: "about", progress: 0, color: "#576b29" },
-  { section: "skills", progress: 0, color: "#166448" },
-  { section: "contact", progress: 0, color: "#bed16b" },
+  { section: "home", progress: 0, color: "var(--ribbon-home)" },
+  { section: "home", progress: 0.72, color: "var(--ribbon-home)" },
+  { section: "work", progress: 0, color: "var(--ribbon-work)" },
+  { section: "work", progress: 0.58, color: "var(--ribbon-olive)" },
+  { section: "experience", progress: 0, color: "var(--ribbon-experience)" },
+  { section: "about", progress: 0, color: "var(--ribbon-about)" },
+  { section: "skills", progress: 0, color: "var(--ribbon-skills)" },
+  { section: "contact", progress: 0, color: "var(--ribbon-contact)" },
 ];
 
 export default function ScrollRibbon() {
@@ -147,7 +148,7 @@ export default function ScrollRibbon() {
               key={`${section}-${progress}`}
               offset="0"
               stopColor={color}
-              stopOpacity={section === "home" ? 0.9 : 0.52}
+              stopOpacity={0.94}
             />
           ))}
         </linearGradient>

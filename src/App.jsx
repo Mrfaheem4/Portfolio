@@ -2,12 +2,18 @@ import Nav from "./components/Nav";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Projects from "./components/Projects";
+import Experience from "./components/Experience";
 import Skills from "./components/Skills";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ScrollRibbon from "./components/ScrollRibbon";
+import useTextReveal from "./lib/useTextReveal";
+import useTextSelection from "./lib/useTextSelection";
 
 export default function App() {
+  useTextReveal();
+  useTextSelection();
+
   return (
     <>
       <a className="skip-link" href="#main">Skip to content</a>
@@ -16,6 +22,7 @@ export default function App() {
         <ScrollRibbon />
         <Hero />
         <Projects />
+        <Experience />
         <About />
         <Skills />
         <Contact />

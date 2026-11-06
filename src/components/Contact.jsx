@@ -1,3 +1,5 @@
+import ArrowIcon from "./ArrowIcon";
+
 export default function Contact() {
   return (
     <section
@@ -6,12 +8,11 @@ export default function Contact() {
       aria-labelledby="contact-title"
     >
       <div className="container">
-        <p className="eyebrow section-label">04 / Start a conversation</p>
         <div className="contact-heading">
           <h2 id="contact-title">
             Have something
             <br />
-            <span className="serif">in mind?</span>
+            in mind?
           </h2>
           <a
             className="contact-arrow"
@@ -20,7 +21,7 @@ export default function Contact() {
             rel="noopener noreferrer"
             aria-label="Email Faheem about your idea"
           >
-            ↗
+            <ArrowIcon />
           </a>
         </div>
         <div className="contact-bottom">
@@ -35,7 +36,7 @@ export default function Contact() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            mrfaheem010@gmail.com <span aria-hidden="true">↗</span>
+            mrfaheem010@gmail.com
           </a>
         </div>
       </div>

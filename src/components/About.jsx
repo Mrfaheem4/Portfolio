@@ -9,11 +9,10 @@ export default function About() {
     >
       <div className="container about-grid">
         <div>
-          <p className="eyebrow section-label">02 / A little about me</p>
           <h2 id="about-title">
             An engineer’s mind.
             <br />
-            <span className="serif">A designer’s eye.</span>
+            A designer’s eye.
           </h2>
         </div>
         <div className="about-copy">
@@ -30,6 +29,10 @@ export default function About() {
             Whether it’s a subtle interaction or the structure behind an app, I
             care about the details that make an experience feel right.
           </p>
+          <div className="about-education">
+            <span>Education</span>
+            <p>Software Engineering, NUST</p>
+          </div>
           <div className="about-signoff">
             <img
               src={signature}
@@ -44,7 +47,7 @@ export default function About() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              More on GitHub <span aria-hidden="true">↗</span>
+              More on GitHub
               <span className="sr-only"> (opens in a new tab)</span>
             </a>
           </div>

@@ -1,0 +1,12 @@
+{
+  "scanned": "2026-11-06",
+  "findings": {
+    "fonts": "DM Sans, Manrope, DM Serif Display in src/index.css:1; retained DM Sans and Manrope",
+    "palette": "Original cream and forest green replaced by explicit user request with near-black, lime, yellow, cyan, lilac, orange and pink. Coral removed; internship uses lilac. Centralized in src/tokens.css.",
+    "motion": "Native scroll-drawn SVG ribbon in src/components/ScrollRibbon.jsx, explicitly retained by the user",
+    "framework": "React 19 and Vite 8 in package.json",
+    "material": "Seven existing projects, six screenshots, portrait, signature, ZEMT logo and internship entry; three design references supplied by the user"
+  },
+  "preserve": ["Existing content, destinations and section IDs", "Portrait and all project assets", "Colour-changing scroll ribbon", "Internship and education", "Existing user edits as the baseline"],
+  "introduce": ["Black and bright palette from the references", "Lilac internship section, no coral", "60px desktop and 40px mobile ribbon", "Small text changes contrast over the ribbon without outlines or background masks", "Outlines retained only on large headings", "Light heading reveals", "Bold typography informed by the supplied references", "Asymmetric project composition", "Rounded portrait frame", "Unified tokens", "Reduced-motion support", "Browser checks"]
+}

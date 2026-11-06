@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local design checks and browser tooling
+.hallmark/tools/
+.hallmark/*-run.txt
+.hallmark/check.mjs

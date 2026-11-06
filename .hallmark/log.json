@@ -1,0 +1,85 @@
+[
+ {
+  "date": "2026-11-06",
+  "mode": "redesign",
+  "depth": "full",
+  "scope": "site",
+  "shape": "Split Studio",
+  "theme": "brand",
+  "axes": "dark/grotesk-heavy/chromatic",
+  "hero": "Stage",
+  "nav": "edge-aligned bar",
+  "footer": "colophon",
+  "imagery": "User portrait, six project screenshots, signature and ZEMT logo",
+  "photos": [],
+  "entry": "Oversized headline and asymmetric portrait",
+  "fingerprint": {
+   "lead": "portrait split",
+   "alignment": "left",
+   "projectLead": "wide feature",
+   "projectBody": "two-column index",
+   "experience": "lilac split",
+   "toolkit": "ruled rows"
+  },
+  "sections": [
+   "home",
+   "work",
+   "experience",
+   "about",
+   "skills",
+   "contact",
+   "footer"
+  ],
+  "signature": "Bright continuous scroll ribbon, heading outlines, adaptive small-text contrast",
+  "waived": [],
+  "prompt": "Use the supplied black and bright references; keep large heading outlines, invert small text over the ribbon, use lilac for Work Experience and remove coral",
+  "validation": {
+   "floor": 0,
+   "reflex": 0,
+   "links": "18/18",
+   "review": "in-thread",
+   "ribbon": "60px desktop, 40px mobile"
+  }
+ },
+ {
+  "date": "2026-11-06",
+  "mode": "redesign",
+  "depth": "full",
+  "scope": "site",
+  "shape": "Split Studio",
+  "theme": "brand",
+  "axes": "light/grotesk-heavy/green",
+  "hero": "Stage",
+  "nav": "edge-aligned bar",
+  "footer": "colophon",
+  "imagery": "User portrait, six project screenshots, signature and ZEMT logo; Synesthesia carried in typography",
+  "photos": [],
+  "entry": "Oversized headline paired with an asymmetric portrait",
+  "fingerprint": {
+   "lead": "portrait split",
+   "alignment": "left",
+   "projectLead": "wide feature",
+   "projectBody": "two-column index",
+   "experience": "dark split",
+   "toolkit": "ruled rows"
+  },
+  "sections": [
+   "home",
+   "work",
+   "experience",
+   "about",
+   "skills",
+   "contact",
+   "footer"
+  ],
+  "signature": "Scroll-drawn colour ribbon and bold portrait frame",
+  "waived": [],
+  "prompt": "Improve the existing portfolio using the supplied bold design references and Hallmark, preserving the projects, internship and colour-changing scroll ribbon",
+  "validation": {
+   "floor": 0,
+   "reflex": 0,
+   "links": "18/18",
+   "review": "in-thread"
+  }
+ }
+]
