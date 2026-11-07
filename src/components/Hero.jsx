@@ -1,5 +1,6 @@
-import portrait from "../assets/faheem.jpg";
+import portrait from "../assets/optimized/faheem-960.webp";
 import signature from "../assets/signature.svg";
+import portraitSmall from "../assets/optimized/faheem-480.webp";
 import ArrowIcon from "./ArrowIcon";
 
 export default function Hero() {
@@ -30,7 +31,7 @@ export default function Hero() {
       </div>
       <div className="portrait-composition">
         <div className="portrait-frame">
-          <img src={portrait} alt="Faheem Ahmed" fetchPriority="high" />
+          <img src={portrait} srcSet={`${portraitSmall} 480w, ${portrait} 960w`} sizes="(max-width: 760px) min(520px, calc(100vw - 48px)), (max-width: 1440px) 40vw, 540px" width="960" height="1280" alt="Faheem Ahmed" fetchPriority="high" loading="eager" decoding="async" />
         </div>
         <img className="portrait-signature" src={signature} alt="" aria-hidden="true" />
         <div className="portrait-caption">

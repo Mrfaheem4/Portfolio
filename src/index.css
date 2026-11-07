@@ -1,5 +1,4 @@
 /* Solid blue, teal, rose, and coral sections; bright ribbon; subtle paper grain. */
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Manrope:wght@800&display=swap");
 @import url("./tokens.css");
 @import url("./base.css");
 
@@ -80,7 +79,7 @@ main > section::after,
   inset: 0;
   z-index: -2;
   border-radius: inherit;
-  background-image: url("/Texturelabs_Paper_178M.jpg");
+  background-image: url("./assets/optimized/paper.webp");
   background-repeat: repeat;
   background-size: 960px auto;
   mix-blend-mode: screen;
@@ -189,11 +188,13 @@ main > section::after,
 }
 
 .site-header {
+  --nav-background: var(--surface-home);
   position: sticky;
   top: 0;
   z-index: var(--z-sticky-nav);
-  background: var(--color-paper);
+  background-color: var(--nav-background);
   isolation: isolate;
+  transition: background-color var(--dur-long) ease;
 }
 .nav {
   display: flex;
@@ -366,7 +367,21 @@ main > section :is(h3, .portrait-caption strong, .experience-company-name) {
   text-shadow: 0 1px 2px var(--section-color);
 }
 /* Blend only transparent body text, so the effect follows the ribbon's pixels. */
-main > section :is(p, .text-link, .project-stack li, .experience-outcomes li, .hero-bottom > span, .portrait-caption div > span, .about-education > span, .work-footnote > span, .experience-type, .project-index, .contact-email):not(.experience-company-name):not([data-text-selected]) {
+main
+  > section
+  :is(
+    p,
+    .text-link,
+    .project-stack li,
+    .experience-outcomes li,
+    .hero-bottom > span,
+    .portrait-caption div > span,
+    .about-education > span,
+    .work-footnote > span,
+    .experience-type,
+    .project-index,
+    .contact-email
+  ):not(.experience-company-name):not([data-text-selected]) {
   mix-blend-mode: difference;
 }
 
@@ -394,26 +409,28 @@ main > section :is(p, .text-link, .project-stack li, .experience-outcomes li, .h
   position: relative;
   display: block;
   aspect-ratio: 16 / 11;
-  padding: var(--space-xl);
+  padding: 0;
   background: var(--color-paper-3);
-  border-radius: var(--radius-card);
+  border-radius: 0;
   overflow: clip;
 }
 .project-preview img {
   width: 100%;
-  height: 100%;
-  object-fit: contain;
+  height: auto;
 }
-.project-preview:hover {
-  outline: 2px solid var(--color-rule-dark);
-  outline-offset: 6px;
+.project-preview:not(.project-preview-art) {
+  aspect-ratio: auto;
+}
+.project-preview:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 5px;
 }
 .project-card:first-child .project-preview {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: auto;
   padding: 0;
   background: var(--color-ink);
   color: var(--color-paper);
-  border-radius: 28px 120px 28px 28px;
+  border-radius: 0;
 }
 .project-card:first-child .project-preview img {
   object-fit: cover;
@@ -421,11 +438,11 @@ main > section :is(p, .text-link, .project-stack li, .experience-outcomes li, .h
 }
 .project-card:nth-child(2) .project-preview {
   background: var(--color-drawing);
-  border-radius: 28px 28px 80px 28px;
+  border-radius: 0;
 }
 .project-card:nth-child(3) .project-preview {
   background: var(--color-browser);
-  border-radius: 80px 28px 28px 28px;
+  border-radius: 0;
 }
 .project-card:nth-child(4) .project-preview {
   background: var(--color-sequence);
@@ -759,7 +776,8 @@ main > section :is(p, .text-link, .project-stack li, .experience-outcomes li, .h
   animation-delay: calc(100ms + var(--pill-index, 0) * 45ms);
 }
 @keyframes toolkit-pill-bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0) scale(1);
   }
   35% {
@@ -780,8 +798,12 @@ main > section :is(p, .text-link, .project-stack li, .experience-outcomes li, .h
   --color-selection: var(--color-contact-ink);
   --color-selection-ink: var(--color-contact);
   color: var(--color-contact-ink);
-  padding-block: var(--section-gap-s);
-  border-radius: 80px 80px 0 0;
+  padding-top: calc(var(--section-gap-s) + 64px);
+  padding-bottom: var(--space-2xl);
+  border-radius: 0;
+}
+#contact::before {
+  background: linear-gradient(to bottom, var(--surface-skills), var(--surface-contact) 180px);
 }
 .contact-heading {
   display: flex;
@@ -790,26 +812,54 @@ main > section :is(p, .text-link, .project-stack li, .experience-outcomes li, .h
   gap: var(--gap-columns);
 }
 .contact-heading h2 {
+  position: relative;
   font-size: clamp(3.5rem, 8.5vw, 8rem);
   max-width: 13ch;
   line-height: 1;
+}
+.contact-title-line {
+  display: block;
+  overflow: clip;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+.contact-title-line > span {
+  display: block;
+  transform-origin: left bottom;
+}
+.contact-underline {
+  width: 58%;
+  height: auto;
+  margin-top: 0.08em;
+  color: var(--ribbon-contact);
+}
+.contact-underline path {
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
 }
 .contact-arrow {
   display: grid;
   place-items: center;
   flex-shrink: 0;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: var(--color-contact-ink);
-  color: var(--color-contact);
+  width: 140px;
+  height: 140px;
+  background: transparent;
+  color: var(--color-contact-ink);
 }
 .contact-arrow .arrow-icon {
-  width: 44px;
-  height: 44px;
+  width: 112px;
+  height: 112px;
+  stroke-width: 1;
+  transition: transform 500ms var(--ease-out);
 }
-.contact-arrow:hover {
-  background: var(--color-contact-muted);
+.contact-arrow:is(:hover, :focus-visible) .arrow-icon {
+  transform: translate(8px, -8px);
+}
+.contact-arrow:is(:hover, :focus-visible) {
+  color: var(--ribbon-contact);
 }
 .contact-bottom {
   display: flex;
@@ -886,9 +936,6 @@ main > section :is(p, .text-link, .project-stack li, .experience-outcomes li, .h
   .portrait-frame {
     border-radius: 100px 24px 100px 24px;
   }
-  .project-preview {
-    padding: var(--space-lg);
-  }
 }
 @media (max-width: 760px) {
   :root {
@@ -920,7 +967,8 @@ main > section :is(p, .text-link, .project-stack li, .experience-outcomes li, .h
     left: 0;
     right: 0;
     padding: var(--space-md) var(--gutter) var(--space-lg);
-    background: var(--color-paper);
+    background-color: var(--nav-background);
+    transition: background-color var(--dur-long) ease;
     border-bottom: 1px solid var(--color-rule);
   }
   .nav-links.is-open {
@@ -1005,13 +1053,9 @@ main > section :is(p, .text-link, .project-stack li, .experience-outcomes li, .h
   .stack-card {
     grid-template-columns: minmax(0, 1fr);
   }
-  .project-preview,
-  .project-card:first-child .project-preview {
-    aspect-ratio: 16 / 11;
-  }
   .project-card:nth-child(3) .project-preview,
   .project-card:nth-child(2) .project-preview {
-    border-radius: var(--radius-card);
+    border-radius: 0;
   }
   .experience-grid {
     gap: var(--space-xl);
@@ -1028,23 +1072,24 @@ main > section :is(p, .text-link, .project-stack li, .experience-outcomes li, .h
   .stack-card {
     gap: var(--space-lg);
   }
-  .contact-section {
-    border-radius: 48px 48px 0 0;
-  }
   .contact-heading {
-    align-items: flex-start;
-    gap: var(--space-md);
+    position: relative;
+    display: block;
   }
   .contact-heading h2 {
-    font-size: clamp(3rem, 9.5vw, 4.5rem);
+    max-width: none;
+    font-size: clamp(2.2rem, 8.5vw, 4rem);
   }
   .contact-arrow {
+    position: absolute;
+    right: 0;
+    bottom: 0;
     width: 64px;
     height: 64px;
   }
   .contact-arrow .arrow-icon {
-    width: 28px;
-    height: 28px;
+    width: 56px;
+    height: 56px;
   }
   .contact-bottom {
     margin-top: var(--space-xl);
@@ -1087,9 +1132,6 @@ main > section :is(p, .text-link, .project-stack li, .experience-outcomes li, .h
   }
   .experience-type {
     margin-left: 0;
-  }
-  .contact-heading h2 {
-    font-size: 2.75rem;
   }
   .contact-arrow {
     width: 52px;

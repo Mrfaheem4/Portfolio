@@ -13,7 +13,7 @@ export default function Projects() {
           {projects.map((project) => (
             <article className="project-card" key={project.id}>
               <a className={`project-preview${!project.image ? " project-preview-art" : ""}`} href={project.link} target="_blank" rel="noopener noreferrer" aria-label={`Explore ${project.name} (opens in a new tab)`}>
-                {project.image ? <img src={project.image} alt={`${project.name} application preview`} loading="lazy" decoding="async" width="800" height="600" /> : <div className="synesthesia-art" aria-hidden="true"><span className="art-title">Synesthesia<span>Sound, in a different light.</span></span></div>}
+                {project.image ? <img src={project.image} srcSet={`${project.imageSmall} 640w, ${project.image} 1280w`} sizes={project.id === "01" ? "(max-width: 760px) calc(100vw - 48px), (max-width: 1100px) 58vw, 760px" : "(max-width: 760px) calc(100vw - 48px), (max-width: 1440px) 46vw, 636px"} alt={`${project.name} application preview`} loading="lazy" decoding="async" width="1280" height={project.imageHeight} /> : <div className="synesthesia-art" aria-hidden="true"><span className="art-title">Synesthesia<span>Sound, in a different light.</span></span></div>}
                 <span className="preview-arrow" aria-hidden="true"><ArrowIcon /></span>
               </a>
               <div className="project-info">

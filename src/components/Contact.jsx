@@ -1,8 +1,11 @@
 import ArrowIcon from "./ArrowIcon";
+import useContactReveal from "../lib/useContactReveal";
 
 export default function Contact() {
+  const sectionRef = useContactReveal();
   return (
     <section
+      ref={sectionRef}
       id="contact"
       className="contact-section section"
       aria-labelledby="contact-title"
@@ -10,9 +13,11 @@ export default function Contact() {
       <div className="container">
         <div className="contact-heading">
           <h2 id="contact-title">
-            Have something
-            <br />
-            in mind?
+            <span className="contact-title-line"><span>Have something</span></span>{" "}
+            <span className="contact-title-line"><span>in mind?</span></span>
+            <svg className="contact-underline" viewBox="0 0 420 28" fill="none" aria-hidden="true">
+              <path d="M4 20C100 4 260 3 414 13M50 26C158 14 285 13 365 18" pathLength="1" />
+            </svg>
           </h2>
           <a
             className="contact-arrow"

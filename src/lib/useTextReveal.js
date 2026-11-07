@@ -18,7 +18,7 @@ export default function useTextReveal() {
       });
     }, { threshold: 0.25, rootMargin: "0px 0px -4% 0px" });
 
-    const targets = document.querySelectorAll("main h2, main h3, .section-heading > p");
+    const targets = document.querySelectorAll("main h2:not(#contact-title), main h3, .section-heading > p");
     if (!reducedMotion.matches) targets.forEach((target) => observer.observe(target));
     const stopMotion = () => {
       if (!reducedMotion.matches) return;
