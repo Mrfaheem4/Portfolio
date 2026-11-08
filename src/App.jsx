@@ -7,13 +7,11 @@ import Skills from "./components/Skills";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ScrollRibbon from "./components/ScrollRibbon";
-import useTextReveal from "./lib/useTextReveal";
 import useTextSelection from "./lib/useTextSelection";
 import useSmoothScroll from "./lib/useSmoothScroll";
 
 export default function App() {
   useSmoothScroll();
-  useTextReveal();
   useTextSelection();
 
   return (

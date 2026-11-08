@@ -15,15 +15,14 @@ export default function Skills() {
     const rows = [...grid.children];
     let frame = 0;
     let currentRow = -1;
+    let bounds = [];
+    let viewportHeight = window.innerHeight;
 
     const updateActiveRow = () => {
       frame = 0;
-      const center = window.innerHeight / 2;
+      const center = window.scrollY + viewportHeight / 2;
       // One row owns the viewport center, in either scroll direction.
-      const nextRow = rows.findIndex((row) => {
-        const { top, bottom } = row.getBoundingClientRect();
-        return top <= center && bottom > center;
-      });
+      const nextRow = bounds.findIndex(({ top, bottom }) => top <= center && bottom > center);
 
       if (nextRow !== currentRow) {
         currentRow = nextRow;
@@ -35,16 +34,25 @@ export default function Skills() {
       if (!frame) frame = window.requestAnimationFrame(updateActiveRow);
     };
 
-    const observer = new ResizeObserver(requestUpdate);
+    const measure = () => {
+      viewportHeight = window.innerHeight;
+      bounds = rows.map((row) => {
+        const rect = row.getBoundingClientRect();
+        return { top: rect.top + window.scrollY, bottom: rect.bottom + window.scrollY };
+      });
+      requestUpdate();
+    };
+    const observer = new ResizeObserver(measure);
     observer.observe(grid);
+    observer.observe(document.getElementById("main"));
     window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
-    requestUpdate();
+    window.addEventListener("resize", measure);
+    measure();
 
     return () => {
       observer.disconnect();
       window.removeEventListener("scroll", requestUpdate);
-      window.removeEventListener("resize", requestUpdate);
+      window.removeEventListener("resize", measure);
       window.cancelAnimationFrame(frame);
     };
   }, []);

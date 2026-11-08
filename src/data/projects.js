@@ -1,15 +1,13 @@
 ﻿import ignittonImg from "../assets/optimized/igniton-1280.webp";
 import dnaAlignImg from "../assets/optimized/dnaalign-1280.webp";
-import osLowImg from "../assets/optimized/os-low-1280.webp";
-import incandescentImg from "../assets/optimized/incandescent-1280.webp";
 import drawbee from "../assets/optimized/drawbee-1280.webp";
 import divinityImg from "../assets/optimized/divinity-1280.webp";
+import incandescentImg from "../assets/optimized/incandescent-1280.webp";
 import ignittonSmall from "../assets/optimized/igniton-640.webp";
 import dnaAlignSmall from "../assets/optimized/dnaalign-640.webp";
-import osLowSmall from "../assets/optimized/os-low-640.webp";
-import incandescentSmall from "../assets/optimized/incandescent-640.webp";
 import drawbeeSmall from "../assets/optimized/drawbee-640.webp";
 import divinitySmall from "../assets/optimized/divinity-640.webp";
+import incandescentSmall from "../assets/optimized/incandescent-640.webp";
 
 
 
@@ -39,6 +37,16 @@ export const projects = [
   },
   {
     id: "03",
+    name: "Ventus",
+    tag: "Browser-based Wind Tunnel",
+    status: "Ongoing",
+    desc: "Exploring airflow in the browser with a GPU-powered 3D fluid simulation. Currently developing the solver and sphere-flow visualization, with custom model support planned.",
+    stack: ["WebGPU", "Three.js", "React", "TypeScript"],
+    artwork: "airflow",
+    link: "https://github.com/Mrfaheem4/Ventus",
+  },
+  {
+    id: "04",
     name: "Divinity",
     tag: "Desktop Browser",
     desc: "A custom Electron-based desktop web browser with a native multi-tab engine, real-time IPC-driven state synchronization, and a 3D landing experience rendered with Three.js.",
@@ -49,7 +57,7 @@ export const projects = [
     link: "https://github.com/Mrfaheem4/Divinity",
   },
   {
-    id: "04",
+    id: "05",
     name: "DNA Align",
     tag: "Bioinformatics",
     desc: "Compare and align DNA sequences with an intuitive interface. Built for researchers and bioinformatics enthusiasts.",
@@ -60,34 +68,24 @@ export const projects = [
     link: "https://dnaalign.vercel.app",
   },
   {
-    id: "05",
-    name: "OS Kernel Simulator",
-    tag: "Systems Programming",
-    desc: "Simulate OS kernel operations including process thread management, synchronization, scheduling, and memory management. Learn how operating systems work.",
-    stack: ["React", "Tailwind", "JavaScript"],
-    image: osLowImg,
-    imageSmall: osLowSmall,
-    imageHeight: 606,
-    link: "https://os-low.vercel.app",
+    id: "06",
+    name: "TD-Replica",
+    tag: "Creative Coding",
+    desc: "An interactive experiment that turns webcam-tracked hand movements into real-time, shader-driven visuals.",
+    stack: ["React", "TypeScript", "WebGL", "GLSL"],
+    artwork: "gestures",
+    link: "https://github.com/Mrfaheem4/TD-Replica",
   },
   {
-    id: "06",
+    id: "07",
     name: "Incandescent",
-    tag: "World Clock",
-    desc: "A beautiful world clock application that uses a time API to display current time across all 24 hour regions. Perfect for coordinating across timezones.",
+    tag: "World Clock · My first project",
+    desc: "A world clock for exploring the time across different time zones. The project that started my journey into building for the web.",
     stack: ["React", "API", "Tailwind"],
     image: incandescentImg,
     imageSmall: incandescentSmall,
     imageHeight: 600,
     link: "https://incandescent-mu.vercel.app",
-  },
-  {
-    id: "07",
-    name: "Synesthesia",
-    tag: "Creative Dev",
-    desc: "Music visualized through shapes and colors. Feed it a track, watch it think in gradients and geometry.",
-    stack: ["React", "TypeScript", "Three.js"],
-    link: "https://github.com/Mrfaheem4/Synesthesia",
   },
 ];
 

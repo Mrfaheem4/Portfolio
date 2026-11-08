@@ -1,22 +1,33 @@
 import { useEffect } from "react";
 import Lenis from "lenis";
+import { publishScrollFrame } from "./scrollFrame";
 
 export default function useSmoothScroll() {
   useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let lenis;
+    let frame = 0;
+
+    const tick = (now) => {
+      frame = window.requestAnimationFrame(tick);
+      lenis.raf(now);
+      publishScrollFrame(lenis.scroll, now);
+    };
 
     const updateMotion = () => {
+      window.cancelAnimationFrame(frame);
+      frame = 0;
       lenis?.destroy();
       lenis = undefined;
 
       if (reducedMotion.matches) return;
 
       lenis = new Lenis({
-        autoRaf: true,
+        autoRaf: false,
         smoothWheel: true,
         lerp: 0.1,
       });
+      frame = window.requestAnimationFrame(tick);
     };
 
     const scrollToAnchor = (event) => {
@@ -70,6 +81,7 @@ export default function useSmoothScroll() {
       reducedMotion.removeEventListener("change", updateMotion);
       document.removeEventListener("click", scrollToAnchor);
       lenis?.destroy();
+      window.cancelAnimationFrame(frame);
     };
   }, []);
 }

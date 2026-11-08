@@ -45,7 +45,6 @@ export default function Hero() {
         </div>
         <div className="hero-bottom">
           <span>Software Engineering, NUST</span>
-          <span>Code with purpose. Design with personality.</span>
           <a href="#work" aria-label="Discover selected projects"><ArrowIcon down /></a>
         </div>
       </div>
