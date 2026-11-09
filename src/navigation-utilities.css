@@ -1,0 +1,5 @@
+/* Only utilities: preserve the portfolio's existing reset and design tokens. */
+@layer theme, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities) source(none);
+@source "./components/StaggeredMenu.tsx";

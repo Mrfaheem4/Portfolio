@@ -17,7 +17,7 @@ export default function Hero() {
             I’m Faheem Ahmed, a software engineer building expressive digital experiences.
           </p>
           <div className="hero-actions">
-            <a className="button button-primary" href="#work">
+            <a className="button button-primary hero-work-button" href="#work">
               Explore my work <ArrowIcon />
             </a>
             <a

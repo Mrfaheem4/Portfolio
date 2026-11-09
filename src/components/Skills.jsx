@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 
 const groups = [
-  { number: "01", title: "Interfaces", color: "var(--toolkit-blue)", description: "Responsive, expressive experiences for the web.", items: ["React", "TypeScript", "JavaScript", "HTML & CSS", "Tailwind CSS", "MUI"] },
-  { number: "02", title: "Motion & interaction", color: "var(--toolkit-teal)", description: "Adding personality through movement and depth.", items: ["GSAP", "Three.js", "UI / UX"] },
-  { number: "03", title: "Beyond the browser", color: "var(--toolkit-rose)", description: "The tools behind connected applications.", items: ["Electron", "Supabase", "PostgreSQL", "Git & GitHub"] },
+  { number: "01", title: "Interfaces", color: "var(--toolkit-white)", description: "Responsive, expressive experiences for the web.", items: ["React", "TypeScript", "JavaScript", "HTML & CSS", "Tailwind CSS", "MUI"] },
+  { number: "02", title: "Motion & interaction", color: "var(--toolkit-light-grey)", description: "Adding personality through movement and depth.", items: ["GSAP", "Three.js", "UI / UX"] },
+  { number: "03", title: "Beyond the browser", color: "var(--toolkit-grey)", description: "The tools behind connected applications.", items: ["Electron", "Supabase", "PostgreSQL", "Git & GitHub"] },
 ];
 
 export default function Skills() {

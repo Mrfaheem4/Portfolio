@@ -7,6 +7,7 @@ export default function useSmoothScroll() {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let lenis;
     let frame = 0;
+    let menuOpen = false;
 
     const tick = (now) => {
       frame = window.requestAnimationFrame(tick);
@@ -27,7 +28,14 @@ export default function useSmoothScroll() {
         smoothWheel: true,
         lerp: 0.1,
       });
+      if (menuOpen) lenis.stop();
       frame = window.requestAnimationFrame(tick);
+    };
+
+    const updateMenu = (event) => {
+      menuOpen = event.detail;
+      if (menuOpen) lenis?.stop();
+      else lenis?.start();
     };
 
     const scrollToAnchor = (event) => {
@@ -76,10 +84,12 @@ export default function useSmoothScroll() {
     updateMotion();
     reducedMotion.addEventListener("change", updateMotion);
     document.addEventListener("click", scrollToAnchor);
+    window.addEventListener("portfolio:menu", updateMenu);
 
     return () => {
       reducedMotion.removeEventListener("change", updateMotion);
       document.removeEventListener("click", scrollToAnchor);
+      window.removeEventListener("portfolio:menu", updateMenu);
       lenis?.destroy();
       window.cancelAnimationFrame(frame);
     };

@@ -1,0 +1,130 @@
+html { scrollbar-gutter: stable; }
+html:has(.portfolio-menu[data-open]) { overflow-y: hidden; }
+.navigation-space { height: var(--header-height); }
+.sm-scope { z-index: var(--z-sticky-nav); height: 100dvh; pointer-events: none; }
+.sm-scope .portfolio-menu .staggered-menu-header { padding: 20px var(--gutter); isolation: auto; z-index: auto; }
+.sm-scope .portfolio-menu .nav-surface {
+  --nav-background: var(--surface-home);
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--nav-background);
+  overflow: clip;
+  pointer-events: none;
+}
+.nav-surface::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../assets/optimized/paper.webp") repeat center / 960px auto;
+  mix-blend-mode: screen;
+  opacity: var(--texture-opacity);
+  pointer-events: none;
+}
+.nav-ink {
+  position: absolute;
+  inset: 0;
+  overflow: clip;
+  contain: paint;
+  visibility: hidden;
+  pointer-events: none;
+}
+.nav-ink.is-changing { visibility: visible; }
+.nav-ink > span {
+  position: absolute;
+  top: -140%;
+  left: -18%;
+  width: 75%;
+  height: 380%;
+  border-radius: 43% 57% 62% 38% / 58% 35% 65% 42%;
+  background: radial-gradient(ellipse at center, var(--nav-ink-color) 52%, transparent 74%);
+  opacity: 0;
+  transform: scale(0.02, 0.15);
+}
+.nav-ink > span:nth-child(2) {
+  left: 24%;
+  top: -100%;
+  border-radius: 62% 38% 45% 55% / 40% 63% 37% 60%;
+}
+.nav-ink > span:nth-child(3) { left: 66%; top: -170%; }
+.nav-ink.is-changing > span { will-change: transform, opacity; }
+.sm-scope .portfolio-menu .sm-logo { position: relative; z-index: 0; color: var(--color-ink); text-decoration: none; }
+.sm-scope .portfolio-menu .sm-toggle {
+  z-index: 20;
+  min-width: 120px;
+  height: 52px;
+  justify-content: space-between;
+  gap: 22px;
+  padding: 0 20px 0 22px;
+  border: 1px solid rgb(255 255 255 / 25%);
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+  box-shadow: 0 4px 24px rgb(0 0 0 / 12%);
+  font-family: var(--font-outlier);
+  font-size: 12px;
+  font-weight: 400;
+  transition: background-color 300ms ease, box-shadow 500ms ease;
+}
+.sm-scope .portfolio-menu .sm-toggle:hover { background: var(--color-ink-2); box-shadow: 0 8px 32px rgb(0 0 0 / 18%); }
+.sm-scope .portfolio-menu .sm-toggle:active { opacity: 1; }
+.sm-scope .portfolio-menu .sm-toggle:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 5px; border-radius: 999px; }
+.sm-scope .portfolio-menu .sm-toggle-textWrap { width: 5ch; min-width: 5ch; margin: 0; text-align: left; }
+.sm-scope .portfolio-menu .sm-icon-line { height: 1px; }
+.sm-scope .portfolio-menu .sm-prelayers,
+.sm-scope .portfolio-menu .staggered-menu-panel { width: min(560px, 100vw); right: 0; left: auto; }
+.sm-scope .portfolio-menu .staggered-menu-panel {
+  padding: clamp(112px, 15dvh, 160px) 56px 48px;
+  background: #ffffff;
+  color: #000000;
+  border-left: 1px solid #dedede;
+  --color-focus: #000000;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none !important;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #777777 #ffffff;
+}
+.sm-scope .portfolio-menu .sm-panel-inner { position: relative; gap: 32px; }
+.sm-scope .portfolio-menu .sm-panel-list { gap: clamp(10px, 2.2dvh, 24px); }
+.sm-scope .portfolio-menu .sm-panel-itemWrap { padding: 4px 0; }
+.sm-scope .portfolio-menu .sm-panel-item {
+  display: block;
+  padding: 0 0 12px;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, min(3.6vw, 6dvh), 3.25rem);
+  line-height: 1.3;
+  font-weight: 400;
+  letter-spacing: var(--tracking-display);
+  text-transform: none;
+  color: #000000;
+  text-decoration: none;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.18em;
+  transition: color 250ms ease;
+}
+.sm-scope .portfolio-menu .sm-panel-item:hover,
+.sm-scope .portfolio-menu .sm-panel-item:focus-visible { color: #444444; }
+.sm-scope .portfolio-menu .sm-panel-itemLabel {
+  text-decoration: none;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.18em;
+}
+.sm-scope .portfolio-menu .sm-panel-item:is(:hover, :focus-visible) .sm-panel-itemLabel {
+  text-decoration-line: underline;
+}
+.sm-scope .portfolio-menu .sm-panel-item:focus-visible { outline-offset: -2px; }
+.sm-backdrop { position: absolute; inset: 0; z-index: 1; background: rgb(0 0 0 / 62%); opacity: 0; pointer-events: none; transition: opacity 500ms ease; }
+[data-open] > .sm-backdrop { opacity: 1; pointer-events: auto; }
+@media (max-width: 760px) {
+  .sm-scope .portfolio-menu .staggered-menu-header { padding-block: 12px; }
+  .sm-scope .portfolio-menu .sm-toggle { min-width: 112px; height: 48px; }
+  .sm-scope .portfolio-menu .staggered-menu-panel { padding: 108px var(--gutter) 40px; }
+  .sm-scope .portfolio-menu .sm-panel-item { font-size: clamp(2rem, min(7.5vw, 6dvh), 2.75rem); }
+}
+@media (max-height: 500px) {
+  .sm-scope .portfolio-menu .staggered-menu-panel { padding-top: 88px; padding-bottom: 24px; }
+  .sm-scope .portfolio-menu .sm-panel-list { gap: 6px; }
+  .sm-scope .portfolio-menu .sm-panel-item { font-size: 1.5rem; padding-bottom: 6px; }
+}
+@media (prefers-reduced-motion: reduce) { .sm-backdrop { transition: none; } }
