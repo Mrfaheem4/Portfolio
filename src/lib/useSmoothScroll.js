@@ -68,15 +68,28 @@ export default function useSmoothScroll() {
         window.history.pushState(null, "", url.hash);
       }
 
-      lenis.scrollTo(target, {
-        duration: 1.2,
+      // Read layout once per click, then let the existing animation loop scroll.
+      // Match the anchor inset so the fixed header doesn't cover the heading.
+      const inset = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+      const maximum = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+      const destination = Math.max(0, Math.min(maximum,
+        target.getBoundingClientRect().top + window.scrollY - inset,
+      ));
+      const distance = Math.abs(destination - lenis.scroll);
+      const duration = Math.min(3, Math.max(1.1, 0.9 + Math.sqrt(distance) / 40));
+
+      lenis.scrollTo(destination, {
+        duration,
         lerp: 0,
-        easing: (progress) => 1 - (1 - progress) ** 3,
+        // Zero velocity and acceleration at both ends: no initial rush or snap.
+        easing: (progress) => progress ** 3 * (10 + progress * (-15 + 6 * progress)),
         onComplete: () => {
           const hadTabIndex = target.hasAttribute("tabindex");
           if (!hadTabIndex) target.setAttribute("tabindex", "-1");
           target.focus({ preventScroll: true });
-          if (!hadTabIndex) target.removeAttribute("tabindex");
+          if (!hadTabIndex) {
+            target.addEventListener("blur", () => target.removeAttribute("tabindex"), { once: true });
+          }
         },
       });
     };

@@ -82,9 +82,15 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   const busyRef = useRef(false);
 
   const itemEntranceTweenRef = useRef<gsap.core.Tween | null>(null);
+  const menuPreparedRef = useRef(false);
 
   useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
+    const previousStyles = new Map<HTMLElement, string>();
+    const setInitialStyle = (element: HTMLElement, styles: Partial<CSSStyleDeclaration>) => {
+      previousStyles.set(element, element.style.cssText);
+      Object.assign(element.style, styles);
+    };
+    {
       const panel = panelRef.current;
       const preContainer = preLayersRef.current;
 
@@ -102,26 +108,35 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       preLayerElsRef.current = preLayers;
 
       const offscreen = position === 'left' ? -100 : 100;
-      gsap.set([panel, ...preLayers], { xPercent: offscreen, opacity: 1 });
+      // Avoid GSAP's transform/style measurement during the first page paint.
+      // Prepare its transform cache only when the user actually opens the menu.
+      [panel, ...preLayers].forEach(element => setInitialStyle(element, {
+        transform: `translateX(${offscreen}%)`, opacity: '1',
+      }));
       if (preContainer) {
-        gsap.set(preContainer, { xPercent: 0, opacity: 1 });
+        setInitialStyle(preContainer, { transform: 'translateX(0%)', opacity: '1' });
       }
 
-      gsap.set(plusH, { transformOrigin: '50% 50%', rotate: 0 });
-      gsap.set(plusV, { transformOrigin: '50% 50%', rotate: 90 });
-      gsap.set(icon, { rotate: 0, transformOrigin: '50% 50%' });
+      setInitialStyle(plusH, { transformOrigin: '50% 50%', transform: 'rotate(0deg)' });
+      setInitialStyle(plusV, { transformOrigin: '50% 50%', transform: 'rotate(90deg)' });
+      setInitialStyle(icon, { transform: 'rotate(0deg)', transformOrigin: '50% 50%' });
 
-      gsap.set(textInner, { yPercent: 0 });
+      setInitialStyle(textInner, { transform: 'translateY(0%)' });
 
-      if (toggleBtnRef.current) gsap.set(toggleBtnRef.current, { color: menuButtonColor });
-    });
-    return () => ctx.revert();
+      if (toggleBtnRef.current) setInitialStyle(toggleBtnRef.current, { color: menuButtonColor });
+    }
+    menuPreparedRef.current = false;
+    return () => previousStyles.forEach((style, element) => { element.style.cssText = style; });
   }, [menuButtonColor, position]);
 
   const buildOpenTimeline = useCallback(() => {
     const panel = panelRef.current;
     const layers = preLayerElsRef.current;
     if (!panel) return null;
+    if (!menuPreparedRef.current) {
+      gsap.set([panel, ...layers], { x: 0, xPercent: position === 'left' ? -100 : 100, opacity: 1 });
+      menuPreparedRef.current = true;
+    }
 
     openTlRef.current?.kill();
     if (closeTweenRef.current) {
@@ -201,7 +216,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
     openTlRef.current = tl;
     return tl;
-  }, []);
+  }, [position]);
 
   const playOpen = useCallback(() => {
     busyRef.current = true;
@@ -298,9 +313,9 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     if (toggleBtnRef.current) {
       if (changeMenuColorOnOpen) {
         const targetColor = openRef.current ? openMenuButtonColor : menuButtonColor;
-        gsap.set(toggleBtnRef.current, { color: targetColor });
+        toggleBtnRef.current.style.color = targetColor;
       } else {
-        gsap.set(toggleBtnRef.current, { color: menuButtonColor });
+        toggleBtnRef.current.style.color = menuButtonColor;
       }
     }
   }, [changeMenuColorOnOpen, menuButtonColor, openMenuButtonColor]);
