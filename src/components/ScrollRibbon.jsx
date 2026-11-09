@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef } from "react";
-import { createRibbonPath } from "../lib/ribbonPath";
+import { createRibbonGeometry } from "../lib/ribbonPath";
 import { smoothRibbonLength, subscribeScrollFrame } from "../lib/scrollFrame";
 
 const palette = [
@@ -115,7 +115,8 @@ export default function ScrollRibbon() {
       }));
 
       svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
-      path.setAttribute("d", createRibbonPath(width, height, sections));
+      const geometry = createRibbonGeometry(width, height, sections);
+      path.setAttribute("d", geometry.path);
       if (contactText && contactMaskPath) {
         const bounds = contactText.getBoundingClientRect();
         contactMask = {
@@ -140,10 +141,10 @@ export default function ScrollRibbon() {
       });
 
       length = path.getTotalLength();
-      samples = Array.from({ length: 1201 }, (_, index) => {
-        const distance = (index / 1200) * length;
-        return { distance, y: path.getPointAtLength(distance).y };
-      });
+      const distanceScale = geometry.length > 0 ? length / geometry.length : 1;
+      samples = geometry.samples.map((sample) => ({
+        distance: sample.distance * distanceScale, y: sample.y,
+      }));
       path.style.strokeDasharray = reducedMotion.matches
         ? "none"
         : String(length);

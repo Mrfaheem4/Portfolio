@@ -2,16 +2,18 @@ import portrait from "../assets/optimized/faheem-960.webp";
 import signature from "../assets/signature.svg";
 import portraitSmall from "../assets/optimized/faheem-480.webp";
 import ArrowIcon from "./ArrowIcon";
+import useHeroReveal from "../lib/useHeroReveal";
 
 export default function Hero() {
+  const sectionRef = useHeroReveal();
   return (
-    <section id="home" aria-labelledby="hero-title">
+    <section ref={sectionRef} id="home" aria-labelledby="hero-title">
       <div className="hero container">
         <div className="intro-copy">
-          <h1 id="hero-title">
-            Thoughtful code.
-            <br />
-            Distinctive experiences.
+          <h1 id="hero-title" aria-label="Thoughtful code. Distinctive experiences.">
+            <span className="hero-title-line"><span className="hero-title-label">Thoughtful code.</span></span>{" "}
+            <span className="hero-title-line"><span className="hero-title-label">Distinctive</span></span>{" "}
+            <span className="hero-title-line"><span className="hero-title-label">experiences.</span></span>
           </h1>
           <p className="hero-intro">
             I’m Faheem Ahmed, a software engineer building expressive digital experiences.
